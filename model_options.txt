@@ -1,0 +1,5 @@
+TARGET=lsd_gnu
+FUN=fun_Cut3PPSAL
+SWITCH_CC=-g
+SWITCH_CC_LNK=
+
