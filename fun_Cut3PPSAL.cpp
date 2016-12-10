@@ -444,7 +444,6 @@ CYCLE(cur, "Supply")
                
      }
    v[9]+=v[8];  
-   v[7]+=VS(cur1,"RatioVacancies")*v[8];
    cur5=SEARCHS(cur1,"BankF");
    VS(cur1,"NetWorth");
    }
@@ -470,7 +469,6 @@ CYCLE(cur, "KFirm")
   } 
 */
 WRITE("AvAge",v[5]/v[6]);
-WRITE("AvRatioVacancies",v[7]/v[9]);
 
 RESULT(1 )
 
@@ -845,8 +843,10 @@ if(v[14]==1)
   v[5]=V("aNW");
   v[6]=v[0]*v[5]+(1-v[5])*v[3]; // number of workers in the first layer
   
-  v[33]=v[4]*(v[9]/v[2]);
-  WRITES(p->up,"RatioVacancies",(v[33])/v[6]);
+  v[33]=(v[3]>v[6])?(v[3]-v[6]):0; //number of vacancies for the first layer, if there are more desired workers than actual new hires
+  WRITES(p->up,"Vacancies",v[33]);
+  v[54]=v[33]/v[6];//ratio of vacancies to actual workers
+  WRITES(p->up,"RatioVacancies",v[54]);
  }
 
 else
@@ -860,6 +860,8 @@ else
   v[21]=VS(cur,"nu"); //given the worker ratio between tiers (defined by the tier below)
   v[19]=VS(cur,"NumWorkers"); //and the number of workers in the previous tier
   v[6]=v[19]/v[21]; // compute the required executives for the current tier
+  INCRS(p->up,"Vacancies",v[54]*v[6]);
+
   v[17]=V("nu");
   if(v[6]>=v[17] && v[18]==v[15])
    { // if they are above the workers ratio of this tier and this is the last tier, create a new working class
@@ -950,6 +952,7 @@ else
   if(v[18]>2 && v[19]<v[21])
    v[6]=0;
  }
+
 
 RESULT(v[6] )
 
@@ -2154,7 +2157,6 @@ EQUATION("KProductionFlow")
 /*
 */
 //Activity of the K producing firm
-V("Vacancies");
 v[0]=V("KQ"); //production capacity of the firm
 v[1]=V("NumOrders");
 if(v[1]==0)
@@ -2292,6 +2294,9 @@ v[9]=VS(p->up,"KNbrWorkers"); // number of first tier worker as a max to chose t
 v[10]=v[9]*v[8];
 v[6]=max(v[5],0);
 v[11]=min(v[10],v[6]);
+v[55]=VS(p->up,"KRatioVacancies");
+INCRS(p->up,"KVacancies",v[55]*v[11]);
+
 RESULT(v[11] )
 
 
@@ -2426,6 +2431,10 @@ if(v[14]==1)
   v[3]=v[4]*(v[1]/v[2]);
   v[5]=V("KaNW");
   v[6]=v[0]*v[5]+(1-v[5])*v[3];
+  v[33]=v[3]>v[6]?v[3]-v[6]:0;
+  v[54]=v[33]/v[6];
+  WRITES(p->up,"KVacancies",v[33]);
+  WRITES(p->up,"KRatioVacancies",v[54]);
   if(v[6]<1)
    v[6]=1; //limit the minimum number of workers to 1 to avoid crazy errors.
  }
@@ -2436,6 +2445,8 @@ else
   v[19]=VS(cur,"KNbrWorkers"); //and the number of workers in the previous tier
   v[21]=VS(cur,"knu"); //given the worker ratio between tiers n the tier below
   v[6]=v[19]/v[21]; // compute the required executives
+  v[54]=VS(p->up,"KRatioVacancies");
+  INCRS(p->up,"KVacancies",v[6]*v[54]);
   v[17]=V("knu"); //given the worker ratio between tiers in the present tier
   if(v[6]>=v[17] && v[18]==v[15])
    { 
@@ -2535,32 +2546,46 @@ v[1]=V("KLaborProductivity");
 RESULT((v[0]*v[1]) )
 
 
-EQUATION("MinWageXXX")
+EQUATION("MinWage")
 /*
+Sets the minimum wage for all categories, as an aggregate relation. Variables influecing overall wage are: aggregate productivity, inflation, and unemployment. 
+Aggregate productivity?
+Unemployment: to account for Beveridge curves we could use the suggishness in the hiring process, which gnerates rates of vacancies...
+NOTE: probably it makes sense to use levels for all variables. That is, when the variable reaches a certain level, a wage resetting is unedergone: if inflation runs too high, wages are renegotiated, if aggregate productivity increase evidently, wage are renegotiated.
 
 */
 V("NbrWorkers");
+v[6]=(double)t;
 v[0]=VL("MinWage",1);
+v[10]=V("InitAggProd"); //the reference level of productivity 
 v[2]=V("MovAvAggProd");
-v[3]=VL("MovAvAggProd",1);
+v[11]=V("IncrAggProd"); 
+v[12]=v[10]+v[10]*v[11]; //required increase in productity to change the min wage
 v[13]=V("MovAvPrice");
-v[14]=VL("MovAvPrice",1);
+v[14]=V("InitAvPrice"); //the reference level of prices
+v[15]=V("IncrAvPrice");
+v[16]=v[14]+v[14]*v[15]; //required increase in prices to change the min wage
+v[17]=V("MovAvUnemp2");
+v[18]=VL("MovAvUnemp2",1);
 v[19]=V("aMWL"); //weight of unemployment on change in min wage
-v[30]=V("aMWA"); // weight of average productivity on changes in min wage
-v[21]=V("aMWP"); // weight of price on changes in min wage
-v[40]=V("AvRatioVacancies");
+v[20]=(v[17]/v[18])-1;
 
-v[5]=(1-v[19]-v[30]-v[21])*v[0]+v[0]*(v[19]*v[40]+v[30]*v[2]/v[3]+v[21]*v[13]/v[14]); 
+v[5]=(1-v[19])*v[0]+v[19]*(v[0]*(1-v[20])); //change in min wage due to changes in the labour market (as proxy of labour (excess) demand) although it should include the available number of workers, or use the beveridge curve versione, or whatever..
 
-v[31]=V("UpperMinWage");
-v[32]=V("LowerMinWage");
+if(v[2]>v[12] && v[13]>v[16]) 
+ { // discrete changes in the minimum wage occur when the wage is renegotiated due to changes in poductivity and in consumables prices
+  v[3]=V("aMWA"); // weight of average productivity on changes in min wage
+  v[4]=(v[2]/v[10])-1;
+  v[21]=V("aMWP"); // weight of price on changes in min wage
+  v[22]=(v[13]/v[14])-1;
+  v[5]=(1-v[19]-v[3]-v[21])*v[0]+v[19]*(v[0]*(1-v[20]))+v[3]*(v[0]*(1+v[4]))+v[21]*(v[0]*(1+v[22]));
+  WRITE("InitAggProd",v[2]);
+  WRITE("InitAvPrice",v[13]);
+ }
 
-v[6]=min(v[5],v[31]*v[0]);
-v[7]=max(v[6],v[32]*v[0]);
-RESULT(v[7])
+RESULT(v[5] )
 
-
-EQUATION("MinWage")
+EQUATION("MinWageMVRemoved")
 /*
 REMOVED, REPLACED BY A SMOOTHED VERSION
 Sets the minimum wage for all categories, as an aggregate relation. Variables influecing overall wage are: aggregate productivity, inflation, and unemployment. 
@@ -2772,195 +2797,6 @@ v[3]=v[2]/v[1]-1;
 RESULT(v[3] )
 
 
-EQUATION("Unemployment")
-/*
-The equation is used to design a very sketchy labour market in which unemployment may reduce wages. 
-The highest number of workers reached in the economy through time is assumed to be the growing working population
-When emplyment drops from this highest level, there is unemployment which is not the fucking 'frictional'
-A more elaborate alternative for this rough proxy is in equation unemp
-*/
-
-v[2]=0;
-CYCLE(cur2, "Supply")
- {
-  CYCLES(cur2, cur, "Firm")
-   {
-    CYCLES(cur, cur1, "Labor")
-     {
-      v[1]=VS(cur1,"NumWorkers");
-      v[2]+=v[1];
-     }
-  
-   }
- }
-CYCLE(cur, "KFirm")
- {
-  CYCLES(cur, cur1, "KLabor")
-   {
-    v[3]=VS(cur1,"KNbrWorkers");
-    v[2]+=v[3];
-   }
-  cur2=SEARCHS(cur,"KEngineers");
-  v[4]=VS(cur2,"KNbrEngineers");
-  v[2]+=v[4];
- }
-
-v[5]=V("Employed");
-//WRITE("NbrWorkers",v[2]);
-if(v[2]>v[5])
- {
-  WRITE("Employed",v[2]);
-  v[6]=0;
-  //if(V("Employed") != V("NbrWorkers"))
-   //INTERACT("whats wong?", v[2]-v[5]);
- }
-else
- v[6]=(v[5]-v[2])/v[5]*100;
-
-RESULT(v[6] )
-
-
-EQUATION("Vacancies")
-/*
-Rate of vacancies over the maximum number of workers (since t=0)
-*/
-
-V("Unemployment");
-v[10]=v[11]=v[15]=v[16]=0;
-CYCLE(cur3, "Supply")
- {
-  CYCLES(cur3, cur, "Firm")
-   {
-    v[51]=0;
-    CYCLES(cur, cur2, "Labor")
-     { //check how many tiers already exist
-      v[51]++;
-     }
-    CYCLES(cur, cur1, "Labor")
-     {
-      v[52]=V("IdLabor");
-      if(v[52]==1)
-       {// compute the vacancies in the first tier
-        v[1]=VS(cur1,"NumWorkers");
-        v[2]=VS(cur1,"ExpectedSales");
-        v[3]=VS(cur1,"CapitalCapacity");
-        v[4]=min(v[2],v[3]);
-        v[6]=VLS(cur1,"MaxLaborProductivity",1);
-        v[13]=VS(cur,"DesiredUnusedCapacity");
-        v[8]=v[4]*v[13]/v[6]; //the actual number of workers needed
-        v[9]=VLS(cur1,"NumWorkers",1);
-        v[12]=v[8]-v[9];
-        if(v[12]>0) 
-         v[10]+=v[8]-v[9]; // number of vacancies as the number of new workers that the firm needs with repsect to the previous period
-        v[11]+=v[1]; // total number of workers
-        v[14]=v[1]-v[9]; 
-        if(v[14]>0)
-         v[15]+=v[1]-v[9]; // number of workers hired, i.e. matched in teh labour market
-        else
-         v[16]+=v[9]-v[1];
-       }
-      else
-       {//compute the vacancies in the executives tires
-        v[1]=VS(cur1,"NumWorkers");
-        v[9]=VLS(cur1,"NumWorkers",1);
-        v[53]=V("nu"); //given the worker ratio between tiers
-        if(v[8]>=v[53])
-         v[8]=v[8]/v[53]; // compute the number of executies needed if in the previous layer there are more than nu workers
-        else
-         v[8]=v[8];
-        v[12]=v[8]-v[9];
-        if(v[12]>0) 
-         v[10]+=v[8]-v[9]; // number of vacancies as the number of new workers that the firm needs with repsect to the previous period
-        v[11]+=v[1]; // total number of executives
-        if(v[14]>0)
-         v[15]+=v[1]-v[9]; // number of executives hired, i.e. matched in teh labour market
-        else
-         v[16]+=v[9]-v[1];
-       }
-     }
-  
-   }
- }
-
-CYCLE(cur, "KFirm")
- {
-  v[23]=v[54]=0;
-  CYCLES(cur, cur1, "Order")
-   {
-    v[21]=VS(cur1,"KAmount");
-    v[22]=VS(cur1,"KCompletion");
-    v[23]+=v[21]-v[22];
-   }
-  CYCLES(cur, cur2, "KLabor")
-   { //check how many tiers already exist
-    v[54]++;
-   }
-  CYCLES(cur, cur3, "KLabor")
-   {
-    v[55]=V("IdKLabor");
-    if(v[55]==1)
-     {
-      v[24]=VS(cur3,"KNbrWorkers");
-      v[25]=VS(cur3,"KLaborProductivity");
-      v[32]=VS(cur3,"KDesiredUnusedCapacity");
-      v[26]=v[23]/v[25]*v[32]; // actual number of kapital workers needed
-      v[27]=VLS(cur3,"KNbrWorkers",1);
-      v[28]=v[26]-v[27];
-      if(v[28]>0)
-       v[10]+=v[26]-v[27]; // sum to number of vacancies with respect to period t-1
-      v[11]+=v[24]; // sum to number of hired workers
-      v[33]=v[24]-v[27]; 
-      if(v[33]>0) 
-       v[15]+=v[24]-v[27]; // sum to number of matches
-      else
-       v[16]+=v[27]-v[24]; // sum to number of discarded
-     }
-    else
-     {// when above the first tier K workers...
-      v[24]=VS(cur3,"KNbrWorkers");
-      v[27]=VLS(cur3,"KNbrWorkers",1);
-      v[56]=V("knu"); //given the worker ratio between tiers
-      if(v[26]>=v[56]) // if there is need for K executives
-       v[26]=v[26]/v[56]; // compute the required K executive vacancies with respective to previous tire vacancies
-      else
-       v[26]=v[26];
-      v[28]=v[26]-v[27];
-      if(v[28]>0)
-       v[10]+=v[26]-v[27]; // sum to number of vacancies with respect to period t-1
-      v[11]+=v[24]; // sum to number of hired workers
-      v[33]=v[24]-v[27]; 
-      if(v[33]>0) 
-       v[15]+=v[24]-v[27]; // sum to number of matches
-      else
-       v[16]+=v[27]-v[24]; // sum to number of discarded
-     }
-   }
-
-  cur4=SEARCHS(cur,"KEngineers");
-  v[29]=VLS(cur4,"KNbrEngineers",1);
-  v[30]=VS(cur4,"KNbrEngineers");
-  v[31]=v[30]-v[29];
-  if(v[31]>0)
-   v[10]+=v[31];
-  v[11]+=v[30];
-  v[34]=v[30]-v[29];
-  if(v[34]>0)
-   v[15]+=v[30]-v[29];
-  else
-   v[16]+=v[29]-v[30];
- }
-
-v[40]=V("Employed");
-v[41]=V("NbrWorkers");
-if(v[41]-v[11]>0.00001)
- INTERACT("why two different computations for NbrWorkers", v[41]-v[11]);
-WRITE("Hired",v[15]/v[40]); // ratio of new hired over the maximum number of workers (since t=0)
-v[50]=V("TotHired");
-WRITE("TotHiredLag",v[50]);
-WRITE("TotHired",v[15]);
-WRITE("JobLoss",v[16]);
-
-RESULT(v[10]/v[40])
 
 
 EQUATION("TotVacancies")
@@ -2968,10 +2804,22 @@ EQUATION("TotVacancies")
 Number of vacancies
 */
 
-v[1]=V("Employed");
-v[2]=V("Vacancies");
+v[1]=V("NbrWorkers");
+v[0]=0;
 
-RESULT(v[2]*v[1] )
+CYCLE(cur,"Firm")
+ {
+  v[0]+=VS(cur,"Vacancies");
+  v[1]++;
+ }
+ 
+CYCLE(cur,"KFirm")
+ {
+  v[0]+=VS(cur,"KVacancies");  
+ }
+
+WRITE("AvRatioVacancies",v[0]/v[1]);
+RESULT(v[0] )
 
 
 EQUATION("MovAvTotVac")
@@ -2987,17 +2835,6 @@ v[4]=v[3]*v[2]+(1-v[3])*v[1];
 RESULT(v[4] )
 
 
-EQUATION("MovAvTotHired")
-/*
-Exponential Moving Average of Total people hired
-*/
-V("Vacancies");
-v[1]=VL("MovAvTotHired",1);
-v[2]=V("TotHiredLag");
-v[3]=V("aTotHir");
-v[4]=v[3]*v[2]+(1-v[3])*v[1];
-
-RESULT(v[4] )
 
 
 
