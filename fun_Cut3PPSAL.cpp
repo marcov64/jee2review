@@ -2565,10 +2565,10 @@ v[13]=V("MovAvPrice");
 v[14]=V("InitAvPrice"); //the reference level of prices
 v[15]=V("IncrAvPrice");
 v[16]=v[14]+v[14]*v[15]; //required increase in prices to change the min wage
-v[17]=V("MovAvUnemp2");
-v[18]=VL("MovAvUnemp2",1);
+v[17]=VL("LTUnemployment",1);
+v[18]=VL("STUnemployment",1);
 v[19]=V("aMWL"); //weight of unemployment on change in min wage
-v[20]=(v[17]/v[18])-1;
+v[20]=(v[18]/v[17])-1;
 
 v[5]=(1-v[19])*v[0]+v[19]*(v[0]*(1-v[20])); //change in min wage due to changes in the labour market (as proxy of labour (excess) demand) although it should include the available number of workers, or use the beveridge curve versione, or whatever..
 
@@ -2579,61 +2579,6 @@ if(v[2]>v[12] && v[13]>v[16])
   v[21]=V("aMWP"); // weight of price on changes in min wage
   v[22]=(v[13]/v[14])-1;
   v[5]=(1-v[19]-v[3]-v[21])*v[0]+v[19]*(v[0]*(1-v[20]))+v[3]*(v[0]*(1+v[4]))+v[21]*(v[0]*(1+v[22]));
-  WRITE("InitAggProd",v[2]);
-  WRITE("InitAvPrice",v[13]);
- }
-
-RESULT(v[5] )
-
-EQUATION("MinWageMVRemoved")
-/*
-REMOVED, REPLACED BY A SMOOTHED VERSION
-Sets the minimum wage for all categories, as an aggregate relation. Variables influecing overall wage are: aggregate productivity, inflation, and unemployment. 
-Aggregate productivity?
-Unemployment: to account for Beveridge curves we could use the suggishness in the hiring process, which gnerates rates of vacancies...
-NOTE: probably it makes sense to use levels for all variables. That is, when the variable reaches a certain level, a wage resetting is unedergone: if inflation runs too high, wages are renegotiated, if aggregate productivity increase evidently, wage are renegotiated.
-
-*/
-V("NbrWorkers");
-v[6]=(double)t;
-v[0]=VL("MinWage",1);
-v[10]=V("InitAggProd"); //the reference level of productivity 
-v[2]=V("MovAvAggProd");
-v[11]=V("IncrAggProd"); 
-v[12]=v[10]+v[10]*v[11]; //required increase in productity to change the min wage
-v[13]=V("MovAvPrice");
-v[14]=V("InitAvPrice"); //the reference level of prices
-v[15]=V("IncrAvPrice");
-v[16]=v[14]+v[14]*v[15]; //required increase in prices to change the min wage
-v[17]=V("MovAvUnemp2");
-v[18]=VL("MovAvUnemp2",1);
-v[19]=V("aMWL"); //weight of unemployment on change in min wage
-v[20]=(v[17]/v[18])-1;
-
-/****
-v[5]=(1-v[19])*v[0]+v[19]*(v[0]*(1-v[20])); //change in min wage due to changes in the labour market (as proxy of labour (excess) demand) although it should include the available number of workers, or use the beveridge curve versione, or whatever..
-***/
-v[30]=V("AvRatioVacancies");
-v[32]=V("capMinWage");
-v[31]=min(v[30],1+v[32]);  
-v[5]=(1-v[19])*v[0]+v[19]*(v[0]*(v[31])); 
-/*****/
-
-
-//if( (v[2]>v[12] || v[13]>v[16]))
-if( (v[2]>v[12] || v[13]>v[16]) && v[13] > v[14])  
- { // discrete changes in the minimum wage occur when the wage is renegotiated due to changes in poductivity and in consumables prices
-  v[3]=V("aMWA"); // weight of average productivity on changes in min wage
-  v[4]=(v[2]/v[10])-1;
-  v[21]=V("aMWP"); // weight of price on changes in min wage
-  v[22]=(v[13]/v[14])-1;
-  //v[5]=(1-v[19]-v[3]-v[21])*v[0]+v[19]*(v[0]*(1-v[20]))+v[3]*(v[0]*(1+v[4]))+v[21]*(v[0]*(1+v[22]));
-  v[30]=V("AvRatioVacancies");
-  v[31]=min(v[30],1);
-  v[5]=(1-v[19]-v[3]-v[21])*v[0]+v[19]*(v[0]*(v[31]))+v[3]*(v[0]*(1+v[4]))+v[21]*(v[0]*(1+v[22]));
-
-  //sprintf(msg, " %lf", v[5]-v[0]);
-  //plog(msg);
   WRITE("InitAggProd",v[2]);
   WRITE("InitAvPrice",v[13]);
  }
@@ -2838,7 +2783,7 @@ RESULT(v[4] )
 
 
 
-EQUATION("MovAvUnemp2")
+EQUATION("UnemploymentRate")
 /*
 We derive the level of unemployment using directly the Beveridge curve, without generateing it. Two options:
 Linear equation: U = Constant - beta*V (Nickell et al: beta=0.23; Wall & Zoega: beta=0.5; Teo et al: 0.3>beta<0.9)
@@ -2847,13 +2792,36 @@ Note that both Constant and beta should be quite different when using one or the
 */
 
 v[1]=V("c");
-v[2]=V("MovAvTotVac");
+v[2]=V("AvRatioVacancies");
 v[3]=V("beta");
 //v[4]=v[1]-v[3]*v[2];
-v[4]=v[1]+v[3]/v[2];
+v[4]=v[1]+pow(v[3],v[2]+0.5);
 
 RESULT(v[4] )
 
+EQUATION("LTUnemployment")
+/*
+Long term unemployment rate
+*/
+
+v[0]=VL("LTUnemployment",1);
+v[1]=V("UnemploymentRate");
+v[2]=V("aLTUR");
+
+v[3]=v[0]*v[2]+(1-v[2])*v[1];
+RESULT( v[3])
+
+EQUATION("STUnemployment")
+/*
+Short term unemployment rate
+*/
+
+v[0]=VL("STUnemployment",1);
+v[1]=V("UnemploymentRate");
+v[2]=V("aSTUR");
+
+v[3]=v[0]*v[2]+(1-v[2])*v[1];
+RESULT( v[3])
 
 
 EQUATION("NbrWorkers")

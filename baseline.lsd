@@ -438,6 +438,7 @@ Label Root
 			Var: TotVacancies
 			Param: TotHired
 			Param: beta
+			Param: c
 			Param: JobLoss
 			Param: InitAggProd
 			Param: IncrAggProd
@@ -455,8 +456,6 @@ Label Root
 			Param: MovAvTotHired
 			Param: aTotHir
 			Param: TotHiredLag
-			Var: MovAvUnemp2
-			Param: c
 			Var: AvWagecoeff
 			Var: TauInit
 			Param: tauMinE
@@ -511,6 +510,11 @@ Label Root
 			Param: InvestmentGdpRatio
 			Param: TotAvWage
 			Param: WageGrowth
+			Var: LTUnemployment
+			Var: STUnemployment
+			Param: aLTUR
+			Param: aSTUR
+			Var: UnemploymentRate
 
 		}
 
@@ -547,7 +551,8 @@ Var: NbrWorkers 1 s + n n	5
 Param: Hired 0 n + n n	0.2
 Var: TotVacancies 1 s + n n	30
 Param: TotHired 0 n + n n	20
-Param: beta 0 n + n n	6
+Param: beta 0 n + n n	0.2
+Param: c 0 n + n n	0.2
 Param: JobLoss 0 n + n n	0
 Param: InitAggProd 0 n + n n	1
 Param: IncrAggProd 0 n + n n	0.05
@@ -565,8 +570,6 @@ Param: aTotVac 0 n + n n	0.05
 Param: MovAvTotHired 1 n + n n	100
 Param: aTotHir 0 n + n n	0.05
 Param: TotHiredLag 0 n + n n	20
-Var: MovAvUnemp2 1 s + n n	0.4
-Param: c 0 n + n n	0.2
 Var: AvWagecoeff 0 n + n n
 Var: TauInit 0 n + n n
 Param: tauMinE 0 n + n n	0
@@ -621,6 +624,11 @@ Param: ConsumptionGdpRatio 0 s + n n	0
 Param: InvestmentGdpRatio 0 s + n n	0
 Param: TotAvWage 0 s + n n	0
 Param: WageGrowth 0 s + n n	0
+Var: LTUnemployment 1 s + n n	0.5
+Var: STUnemployment 1 s + n n	0.5
+Param: aLTUR 0 n + n n	0.995
+Param: aSTUR 0 n + n n	0.99
+Var: UnemploymentRate 0 s + n n
 
 Object: Supply C	1
 Param: aES 0 n + n n	0.9
@@ -705,7 +713,7 @@ Var: WagePrem 0 n + n n
 Var: SmoothProfit 1 n + n n	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1
 Param: LaborForce 0 n + n n	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
 Param: RatioVacancies 0 n + n n	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
-Param: Vacancies 0 s + n n	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30
+Param: Vacancies 0 n + n n	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30
 
 Object: PNeed C	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
 Param: IdPNeed 0 n + n n	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
@@ -1061,9 +1069,7 @@ END_DESCRIPTION
 
 Variable_TotVacancies
 (no description available)
-
 _INIT_
-
 
 END_DESCRIPTION
 
@@ -1077,6 +1083,12 @@ Parameter_beta
 'beta' appears in the equation for: MovAvUnemp1, MovAvUnemp2, Unemp.
 _INIT_
  All 1 instances equal to 0.5.
+END_DESCRIPTION
+
+Parameter_c
+(no description available)
+_INIT_
+ All 1 instances equal to 100.
 END_DESCRIPTION
 
 Parameter_JobLoss
@@ -1135,9 +1147,7 @@ END_DESCRIPTION
 
 Variable_MovAvNbrWork
 (no description available)
-
 _INIT_
-
 
 END_DESCRIPTION
 
@@ -1155,9 +1165,7 @@ END_DESCRIPTION
 
 Variable_MovAvTotVac
 (no description available)
-
 _INIT_
-
 
 END_DESCRIPTION
 
@@ -1183,20 +1191,6 @@ Parameter_TotHiredLag
 'TotHiredLag' appears in the equation for: Vacancies, MovAvTotHired.
 _INIT_
 
-END_DESCRIPTION
-
-Variable_MovAvUnemp2
-(no description available)
-
-_INIT_
-
-
-END_DESCRIPTION
-
-Parameter_c
-(no description available)
-_INIT_
- All 1 instances equal to 100.
 END_DESCRIPTION
 
 Variable_AvWagecoeff
@@ -1520,6 +1514,36 @@ _INIT_
 END_DESCRIPTION
 
 Parameter_WageGrowth
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Variable_LTUnemployment
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Variable_STUnemployment
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_aLTUR
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_aSTUR
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Variable_UnemploymentRate
 (no description available)
 _INIT_
 
@@ -2023,7 +2047,9 @@ END_DESCRIPTION
 
 Parameter_Vacancies
 (no description available)
+
 _INIT_
+
 
 END_DESCRIPTION
 
