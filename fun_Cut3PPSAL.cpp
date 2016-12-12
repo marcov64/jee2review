@@ -2567,6 +2567,9 @@ v[15]=V("IncrAvPrice");
 v[16]=v[14]+v[14]*v[15]; //required increase in prices to change the min wage
 v[17]=VL("LTUnemployment",1);
 v[18]=VL("STUnemployment",1);
+
+v[17]=V("NaturalUR");
+
 v[19]=V("aMWL"); //weight of unemployment on change in min wage
 v[20]=(v[18]/v[17])-1;
 
@@ -2795,7 +2798,7 @@ v[1]=V("c");
 v[2]=V("AvRatioVacancies");
 v[3]=V("beta");
 //v[4]=v[1]-v[3]*v[2];
-v[4]=v[1]+pow(v[3],v[2]+0.5);
+v[4]=v[1]+pow(v[3],3*v[2]+0.5);
 
 RESULT(v[4] )
 
