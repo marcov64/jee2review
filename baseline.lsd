@@ -516,6 +516,9 @@ Label Root
 			Param: aSTUR
 			Var: UnemploymentRate
 			Param: NaturalUR
+			Param: minMinWage
+			Param: maxMinWage
+			Param: elasMinWage
 
 		}
 
@@ -559,7 +562,7 @@ Param: InitAggProd 0 n + n n	1
 Param: IncrAggProd 0 n + n n	0.05
 Param: InitAvPrice 0 s + n n	1
 Param: IncrAvPrice 0 n + n n	0.05
-Param: aMWL 0 n + n n	0.5
+Param: aMWL 0 n + n n	0.05
 Param: aMWA 0 n + n n	0.05
 Param: aMWP 0 n + n n	0.05
 Var: MovAvPrice 1 s + n n	-1
@@ -630,7 +633,10 @@ Var: STUnemployment 1 s + n n	0.1
 Param: aLTUR 0 n + n n	0.995
 Param: aSTUR 0 n + n n	0.99
 Var: UnemploymentRate 0 s + n n
-Param: NaturalUR 0 n + n n	0.15
+Param: NaturalUR 0 n + n n	0.2
+Param: minMinWage 0 n + n n	1
+Param: maxMinWage 0 n + n n	2
+Param: elasMinWage 0 n + n n	10
 
 Object: Supply C	1
 Param: aES 0 n + n n	0.9
@@ -959,7 +965,7 @@ SIM_NUM 1
 SEED 2
 MAX_STEP 5000
 EQUATION fun_Cut3PPSAL.cpp
- MODELREPORT report_FinalBM1rep10seed10.html
+ MODELREPORT report_baseline.html
 
 DESCRIPTION
 
@@ -1552,6 +1558,24 @@ _INIT_
 END_DESCRIPTION
 
 Parameter_NaturalUR
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_minMinWage
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_maxMinWage
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_elasMinWage
 (no description available)
 _INIT_
 

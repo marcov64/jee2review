@@ -2568,23 +2568,33 @@ v[16]=v[14]+v[14]*v[15]; //required increase in prices to change the min wage
 v[17]=VL("LTUnemployment",1);
 v[18]=VL("STUnemployment",1);
 
-v[17]=V("NaturalUR");
+v[30]=V("minMinWage");
+v[31]=V("maxMinWage");
+v[32]=V("elasMinWage");
 
-v[19]=V("aMWL"); //weight of unemployment on change in min wage
-v[20]=(v[18]/v[17])-1;
+v[5]=v[30]+v[31]*exp(-v[32]*v[18]);
 
-v[5]=(1-v[19])*v[0]+v[19]*(v[0]*(1-v[20])); //change in min wage due to changes in the labour market (as proxy of labour (excess) demand) although it should include the available number of workers, or use the beveridge curve versione, or whatever..
 
-if(v[2]>v[12] && v[13]>v[16]) 
- { // discrete changes in the minimum wage occur when the wage is renegotiated due to changes in poductivity and in consumables prices
-  v[3]=V("aMWA"); // weight of average productivity on changes in min wage
-  v[4]=(v[2]/v[10])-1;
-  v[21]=V("aMWP"); // weight of price on changes in min wage
-  v[22]=(v[13]/v[14])-1;
-  v[5]=(1-v[19]-v[3]-v[21])*v[0]+v[19]*(v[0]*(1-v[20]))+v[3]*(v[0]*(1+v[4]))+v[21]*(v[0]*(1+v[22]));
+if(v[2]>v[12])
+ {
+ 
+  v[30]=(v[2]/v[10])*v[30];
+  v[31]=(v[2]/v[10])*v[31];  
   WRITE("InitAggProd",v[2]);
-  WRITE("InitAvPrice",v[13]);
+  WRITE("IncrAggProd",v[11]*v[2]/v[10]);  
  }
+
+if(v[13]>v[16])
+ {
+ 
+  v[30]=(v[13]/v[14])*v[30];
+  v[31]=(v[13]/v[14])*v[31];  
+  WRITE("InitAvPrice",v[13]);
+  WRITE("IncrAvPrice",v[15]*v[13]/v[14]);  
+ }
+
+WRITE("minMinWage",v[30]);
+WRITE("maxMinWage",v[31]);
 
 RESULT(v[5] )
 
