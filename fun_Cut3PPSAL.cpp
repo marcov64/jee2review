@@ -2287,13 +2287,12 @@ v[3]=V("EngineersHiring"); // share of cuimulated profits devoted to increase th
 v[1]=VL("BalanceK",1);
 v[4]=0;
 v[7]=max(v[1],v[4]); // in case in which profits are negative for a long time but the firm achieve to sell some macineries, we assume it decides to increase the attractiveness of its capital
-v[5]=v[3]*(v[7]/v[2]);	
+v[5]=v[3]*(v[7]/v[2]);
+//REMOVED
+	
 v[8]=V("EngineersShare");
-//v[9]=VS(p->up->son,"KNbrWorkers"); // number of first tier worker as a max to chose the number of engineers
 v[9]=VS(p->up,"KNbrWorkers"); // number of first tier worker as a max to chose the number of engineers
-v[10]=v[9]*v[8];
-v[6]=max(v[5],0);
-v[11]=min(v[10],v[6]);
+v[11]=v[9]*v[8];
 v[55]=VS(p->up,"KRatioVacancies");
 INCRS(p->up,"KVacancies",v[55]*v[11]);
 
@@ -2572,7 +2571,7 @@ v[30]=V("minMinWage");
 v[31]=V("maxMinWage");
 v[32]=V("elasMinWage");
 
-v[5]=v[30]+v[31]*exp(-v[32]*v[18]);
+v[5]=v[30]+v[31]*pow(v[18],-v[32]);
 
 
 if(v[2]>v[12])

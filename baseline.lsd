@@ -542,8 +542,8 @@ Var: Av_Computations 0 n + n n
 Object: Country C	1
 Var: Init 0 n + n n
 Var: Trade 0 n + d n
-Var: Production 0 n + d n
-Var: MinWage 1 s + d n	1
+Var: Production 0 n + n n
+Var: MinWage 1 s + n n	1
 Var: AggProductivity 1 s + n n	1
 Func: TTB_multiplWinner 0 n + n n
 Var: TotUSales 0 n + n n
@@ -636,7 +636,7 @@ Var: UnemploymentRate 0 s + n n
 Param: NaturalUR 0 n + n n	0.2
 Param: minMinWage 0 n + n n	1
 Param: maxMinWage 0 n + n n	2
-Param: elasMinWage 0 n + n n	10
+Param: elasMinWage 0 n + n n	0.01
 
 Object: Supply C	1
 Param: aES 0 n + n n	0.9
@@ -645,7 +645,7 @@ Param: TotalSales 0 n + n n	0
 Param: innoInterval 0 n + n n	10
 Param: aLearningK 0 n + n n	0
 Param: minMarkup 0 n + n n	0.15
-Func: Entry 0 n + d n
+Func: Entry 0 n + n n
 Var: Exit 0 n + n n
 Func: CounterIdFirm 1 n + n n	100
 Param: coefMarkupVar 0 n + n n	0.3
@@ -910,7 +910,7 @@ Param: KSkillBiais 0 n + n n	0	0	0	0	0	0	0	0	0	0
 Param: KP 0 n + n n	0	0	0	0	0	0	0	0	0	0
 
 Object: BankK C	1	1	1	1	1	1	1	1	1	1
-Var: BalanceK 1 n + n n	0	0	0	0	0	0	0	0	0	0
+Var: BalanceK 1 n + d n	0	0	0	0	0	0	0	0	0	0
 Param: KRevenues 0 n + n n	0	0	0	0	0	0	0	0	0	0
 Param: DebtK 0 n + n n	0	0	0	0	0	0	0	0	0	0
 
@@ -937,7 +937,7 @@ Param: SAvHealth 0 s + n n	0	0	0	0	0	0	0	0	0	0
 Param: SAvBacklog 0 s + n n	0	0	0	0	0	0	0	0	0	0
 Param: SAvStock 0 s + n n	0	0	0	0	0	0	0	0	0	0
 Param: numExit 0 s + n n	0	0	0	0	0	0	0	0	0	0
-Param: AvAgeDeath 0 s + d n	0	0	0	0	0	0	0	0	0	0
+Param: AvAgeDeath 0 s + n n	0	0	0	0	0	0	0	0	0	0
 Param: SKProductivity 0 s + n n	0	0	0	0	0	0	0	0	0	0
 Param: SULC 0 s + n n	0	0	0	0	0	0	0	0	0	0
 Param: Sapp 0 n + n n	0	0	0	0	0	0	0	0	0	0
