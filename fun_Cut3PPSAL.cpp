@@ -10,21 +10,6 @@ MODELBEGIN
 ******************************************/
 
 
-EQUATION("TotalSavings")
-/*
-Comment
-*/
-
-v[0]=v[1]=0;
-cur1=SEARCHS(p->up,"Demand");
-
-CYCLES(cur1,cur, "Class")
- {
-  v[0]+=VS(cur,"BalanceC");
- }
-
-RESULT(v[0]+v[2] )
-
 
 
 EQUATION("Health")
@@ -137,6 +122,9 @@ CYCLE(cur, "Sectors")
   WRITES(cur,"AvAgeDeath",0);
  }
 
+cur=SEARCH("Bank");
+WRITES(cur,"CapitalDestroyed",0);
+WRITES(cur,"CapitalDemand",0);
 RESULT(1 )
 
 EQUATION("Exit")
@@ -165,7 +153,7 @@ CYCLE_SAFE(cur, "Firm")
         INTERACTS(cur,"Dying", v[7]);
       INCRS(cur->hook->up,"AvAgeDeath",v[5]);
       INCRS(cur->hook->up,"numExit",1);      
-      INCRS(cur2->hook,"TotalDebt",-v[20]);
+      INCRS(cur2->hook,"CapitalDestroyed",v[20]);
       DELETE(cur->hook); 
       DELETE(cur);
       v[4]++;
@@ -552,7 +540,6 @@ CYCLE(cur, "Class")
    }
  }
 cur=SEARCH("Bank");
-WRITES(cur,"ProfitB",0); 
 RESULT( 1)
 
 EQUATION("UnitDemand")
@@ -733,17 +720,7 @@ if(v[1]==0 || v[2]==0 || v[0]>0 )
 else
  v[3]=1+V("minMarkup")+v[4]*log(1+(v[1]+v[5])/v[2]);
 
-v[10]=VL("InterestPayment",1);
-v[11]=VL("SmoothProfit",1);
 
-if(v[10]>0)
- v[12]=max(0,(v[10]-v[11])/v[10]);
-else
- v[12]=0;
-
-v[13]=log(1+v[12]);
-v[3]+=v[13]; 
-//v[3]=1+V("minMarkup");//normal level of markup
 RESULT(v[3])
 
 
@@ -1076,6 +1053,136 @@ v[7]=v[3]/v[4];
 
 RESULT(v[7] )
 
+EQUATION("FinancialTrading")
+/*
+Collect from household classes and firms (C and K) the relevant financial aggregate
+*/
+V("Production");
+v[0]=v[1]=v[2]=v[3]=v[4]=v[5]=v[6]=v[7]=0;
+
+
+CYCLE(cur, "Class")
+ {
+  v[6]=VS(cur,"BalanceC");
+  if(v[6]>0)
+   v[0]+=v[6];
+  else
+   v[1]-=v[6]; 
+ }
+
+
+cur2=SEARCH("Bank");
+
+WRITES(cur2,"TotalSavings",v[0]);
+WRITES(cur2,"TotalWithdrawals",v[1]);
+
+CYCLE(cur, "Firm")
+ {
+  cur1=SEARCHS(cur,"BankF");
+  v[7]+=VS(cur1,"DebtF");  
+  v[6]=VS(cur,"BalanceF");
+  if(v[6]>0)
+   v[2]+=v[6];
+  else
+   v[3]-=v[6];
+  
+ }
+
+CYCLE(cur, "KFirm")
+ {
+  cur1=SEARCHS(cur,"BankK");
+  v[7]+=VS(cur1,"DebtK");  
+  v[6]=VS(cur,"BalanceK");
+  if(v[6]>0)
+   v[2]+=v[6];
+  else
+   {
+    v[3]-=v[6];
+    INCRS(cur1,"DebtK",-v[6]);
+   }
+ }
+
+WRITES(cur2,"TotalCapital",v[7]);
+WRITES(cur2,"TotalDividends",v[2]);
+WRITES(cur2,"TotalLosses",v[3]); 
+RESULT(1)
+
+EQUATION("UnitValue")
+/*
+The value of a unit varies exogenously depending on a discount rate expressing the growth or fall of value of existing assets
+*/
+
+v[0]=VL("UnitValue",1);
+v[1]=VL("TotalValue",1);
+v[2]=v[1]/v[0];
+RESULT(v[2] )
+
+EQUATION("TotalValue")
+/*
+Total value of the assets
+*/
+
+v[0]=V("Liquidity");
+v[1]=V("TotalCapital");
+RESULT(v[0]+v[1] )
+
+EQUATION("NewUnits")
+/*
+The number of new units is the new investment divided by the unit value 
+*/
+
+v[0]=V("TotalSavings");
+v[1]=V("UnitValue");
+RESULT(v[0]/v[1])
+
+EQUATION("TotalNumberUnits")
+/*
+Total number of units
+*/
+v[0]=VL("TotalNumberUnits",1);
+v[1]=V("NewUnits");
+v[2]=V("SoldUnits");
+RESULT(v[0]+v[1]-v[2] )
+
+EQUATION("SoldUnits")
+/*
+Comment
+*/
+v[0]=V("TotalWithdrawals");
+v[1]=V("UnitValue");
+RESULT(v[0]/v[1] )
+
+EQUATION("Liquidity")
+/*
+Available liquidity
+*/
+
+v[0]=VL("Liquidity",1);
+v[1]=V("OutgoingLiquidity");
+v[2]=V("TotalSavings");
+
+RESULT(v[0]+v[2]-v[1])
+
+EQUATION("CapitalUsed")
+/*
+Total capital currently employed by firms 
+*/
+
+v[0]=VL("CapitalUsed",1);
+v[1]=V("CapitalDemand");
+v[2]=V("CapitalDestroyed");
+
+RESULT(v[0]+v[1]-v[2]-v[1] )
+
+EQUATION("OutgoingLiquidity")
+/*
+Lost liquidity
+*/
+V("FinancialTrading");
+v[1]=V("TotalWithdrawals");
+v[2]=V("CapitalDemand");
+RESULT(v[1]+v[2])
+
 EQUATION("Income")
 /*
 Comment
@@ -1085,7 +1192,7 @@ v[0]=V("PremiaIncome");
 v[1]=V("WageIncome");
 v[3]=VL("ShareIncome",1);
 v[4]=V("ExIncome");
-v[14]=V("RentsC");
+v[14]=V("DividendsC");
 v[12]=V("NoConsumption");
 
 v[5]=v[0]+v[1]+v[3]*v[4]+v[14]+v[12];
@@ -1099,14 +1206,8 @@ Desired level of consumption
 v[0]=VL("Income",1);
 v[1]=V("SavingRate");
 v[2]=v[0]*(1-v[1]);
-v[3]=VL("BalanceC",1);
-v[6]=max(0,v[3]);
-v[4]=V("ShareSavingsConsumed");
 
-
-v[5]=v[2]+v[6]*v[4];
-
-RESULT(v[5] )
+RESULT(v[2] )
 
 
 EQUATION("Expenditure")
@@ -1117,55 +1218,42 @@ v[0]=VL("Expenditure",1);
 v[1]=V("Consumption");
 v[2]=V("aEx");
 v[10]=v[0]*v[2]+(1-v[2])*(v[1]);
-RESULT(v[10] )
+v[11]=max(v[10],0);
+RESULT(v[11] )
 
-EQUATION("RentsC")
+EQUATION("DividendsC")
 /*
-Rents provided by savings account
+Income coming from the dividend distributed to shareholder
 */
 
-/*
-v[0]=VL("BalanceC",1);
-v[1]=V("InterestRate");
+v[0]=VLS(p->hook,"TotalNumberUnits",1);
+v[1]=VLS(p->hook,"TotalDividends",1);
+v[2]=VL("NumberUnits",1);
 
-if(v[0]>0)
- v[2]=v[0]*v[1];
-else
- v[2]=0;
-INCRS(p->hook,"ProfitB",-v[2]);
+v[3]=v[1]*v[2]/v[0];
+RESULT(v[3])
+
+EQUATION("NumberUnits")
+/*
+Number of units of count defining the shares of dividends the class is entitled to 
 */
 
-v[0]=VL("BalanceC",1);
-if(v[0]<=0)
- END_EQUATION(0);
+v[1]=VS(p->hook,"UnitValue");
+v[0]=V("BalanceC");
+v[2]=VL("NumberUnits",1);
+v[3]=v[2]+v[0]/v[1];
+RESULT( v[3])
 
-cur=SEARCH("BankC");
-v[6]=VS(cur->hook,"ActiveInterestRate");
-v[5]=v[6]*v[0];
-
-v[1]=VLS(cur->hook,"TotalSavings",1);
-v[2]=VS(cur->hook,"ProfitB");
-if(v[1]>0)
- v[4]=v[2]*v[0]/v[1];
-else
- v[4]=0;
- 
-WRITE("endoReturns",v[4]/v[0]); 
-v[7]=v[5]+v[4];
-WRITE("shareWealth",v[0]/v[1]);
-
-
-RESULT(v[7])
 
 EQUATION("BalanceC")
 /*
 Comment
 */
-v[0]=VL("BalanceC",1);
 v[1]=V("Income");
 v[2]=V("Expenditure");
 
-v[3]=v[0]+v[1]-v[2];
+v[3]=v[1]-v[2];
+
 RESULT(v[3] )
 
 
@@ -1635,14 +1723,6 @@ INCRS(p->hook,"WageIncome",v[5]*v[0]*v[1]);
 
 RESULT((v[0]*v[1]) )
 
-EQUATION("InterestPayment")
-/*
-Comment
-*/
-v[0]=V("DebtF");
-v[1]=V("InterestRate");
-
-RESULT(v[0]*v[1])
 
 
 EQUATION("WagePrem")
@@ -1651,10 +1731,9 @@ Wage premia distributed, when available to all classes of executives.
 */
 
 v[0]=V("Profit");
-v[6]=V("InterestPayment");
 
 v[2]=V("roPremia");
-v[5]=max(0,(v[0]-v[6])*v[2]);
+v[5]=max(0,(v[0])*v[2]);
 
 if(v[5]>0)
  {
@@ -1687,31 +1766,10 @@ Balance of the current account for firms
 */
 v[0]=V("Profit");
 v[1]=V("WagePrem");
-v[2]=V("DebtF");
-if(v[2]>0)
-{
- v[3]=V("InterestRate");
- v[4]=v[3]*v[2];
- INCRS(p->hook,"ProfitB",v[4]);
-}
 
-v[5]=v[0]-v[1]-v[4]+VL("BalanceF",1); //total liquidity after premia and interests 
+v[3]=v[0]-v[1];
 
-if(v[5]>0 && v[2]>0)
- {
-  v[6]=min(v[2],v[5]);
-  INCR("DebtF",-v[6]); // sprintf(msg, " B(%g)\n", -v[6]); plog(msg);
-  INCRS(p->hook,"TotalDebt",-v[6]);
-  v[5]-=v[6];
- }
-if(v[5]<0)
- {
-  INCR("DebtF",-v[5]); // sprintf(msg, " B2(%g)\n", -v[5]); plog(msg);
-  INCRS(p->hook,"TotalDebt",-v[5]);
-  v[5]=0;
- } 
- 
-RESULT(v[5] )
+RESULT(v[3])
 
 EQUATION("LaborCostK")
 /*
@@ -1730,34 +1788,14 @@ EQUATION("BalanceK")
 /*
 Balance of the current account for firms
 */
+
+V("KProductionFlow");
 v[0]=V("KRevenues");
-WRITE("KRevenues",0);
 v[1]=V("KWagePrem");
 v[10]=V("LaborCostK");
 
-v[2]=V("DebtK");
-if(v[2]>0)
-{
- v[3]=V("InterestRate");
- v[4]=v[3]*v[2];
- INCRS(p->hook,"ProfitB",v[4]);
-}
 
-v[5]=VL("BalanceK",1)+v[0]-v[10]-v[1]-v[4]; //total liquidity after premia and interests 
-
-if(v[5]>0 && v[2]>0)
- {
-  v[6]=min(v[2],v[5]);
-  INCR("DebtK",-v[6]);
-  INCRS(p->hook,"TotalDebt",-v[6]);
-  v[5]-=v[6];
- }
-if(v[5]<0)
- {
-  INCR("DebtK",-v[5]);
-  INCRS(p->hook,"TotalDebt",-v[5]);
-  v[5]=0;
- } 
+v[5]=v[0]-v[10]-v[1]; //total liquidity after labor costs and premia
  
 RESULT(v[5] )
 
@@ -1913,12 +1951,11 @@ if(v[11]==0)
 v[12]=v[11]*v[8];//desired capital
 
 v[14]=VL("SmoothProfit",1);
-v[15]=VL("InterestPayment",1);
 v[16]=V("AvKPrice");
 v[17]=V("InterestRate");
 v[24]=V("BacklogValue");
 
-v[18]=max(0,v[14]-v[15]) ;//financial constraints
+v[18]=max(0,v[14]) ;//financial constraints
 
 
 v[20]=VL("BalanceF",1)-V("DebtF");//liquid capital available to invest
@@ -2170,7 +2207,8 @@ CYCLE(cur, "Order")
   v[5]=VS(cur,"KCompletion");
   v[3]+=v[4]-v[5];
  }
-
+cur5=SEARCH("BankK");
+WRITES(cur5,"KRevenues",0);
 
 CYCLE_SAFE(cur, "Order")
  {//increase the level of advancement of the orders and, if completed, remove the order. Given the production capacity, devote it respecting oreders' order (first comes first go, which allows to respect the priority given by customers, on side, and to reduce the dofferences between the price agreed upon ordering and the price at which the kapital is sold)
@@ -2204,7 +2242,7 @@ CYCLE_SAFE(cur, "Order")
       SORTS(cur->hook,"Capital","IncProductivity", "DOWN");
       cur5=SEARCHS(cur->hook,"BankF");
       INCRS(cur5,"DebtF",v[4]*v[11]); // sprintf(msg, " KF(%g)\n", v[4]*v[11]); plog(msg);  
-      INCRS(cur5->hook,"TotalDebt",v[4]*v[11]);
+      INCRS(cur5->hook,"CapitalDemand",v[4]*v[11]);
       cur5=SEARCH("BankK");
       INCRS(cur5,"KRevenues",v[4]*v[11]);
       
@@ -2577,19 +2615,19 @@ v[5]=v[30]+v[31]*pow(v[18],-v[32]);
 if(v[2]>v[12])
  {
  
-  v[30]=(v[2]/v[10])*v[30];
-  v[31]=(v[2]/v[10])*v[31];  
+  v[30]=(v[12]/v[10])*v[30];
+  v[31]=(v[12]/v[10])*v[31];  
   WRITE("InitAggProd",v[2]);
-  WRITE("IncrAggProd",v[11]*v[2]/v[10]);  
+ // WRITE("IncrAggProd",v[11]*v[2]/v[10]);  
  }
 
 if(v[13]>v[16])
  {
  
-  v[30]=(v[13]/v[14])*v[30];
-  v[31]=(v[13]/v[14])*v[31];  
+  v[30]=(v[16]/v[14])*v[30];
+  v[31]=(v[16]/v[14])*v[31];  
   WRITE("InitAvPrice",v[13]);
-  WRITE("IncrAvPrice",v[15]*v[13]/v[14]);  
+ // WRITE("IncrAvPrice",v[15]*v[13]/v[14]);  
  }
 
 WRITE("minMinWage",v[30]);
