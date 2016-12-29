@@ -198,6 +198,8 @@ Label Root
 						Var: BalanceC
 						Var: DividendsC
 						Var: NumberUnits
+						Param: ShareUnits
+						Var: LiquidityRentsC
 
 					}
 
@@ -427,6 +429,8 @@ Label Root
 				Var: TotalNumberUnits
 				Var: NewUnits
 				Var: SoldUnits
+				Param: ShareCapital
+				Param: InterestRateLiquidity
 
 			}
 
@@ -850,7 +854,9 @@ Param: NegativeQuality 0 n + n n	-1	1	-1	1	-1	1	-1	1	-1	1	-1	1	-1	1	-1	1	-1	1	-1
 Object: BankC C	1	1	1
 Var: BalanceC 1 s + n n	0	0	0
 Var: DividendsC 0 s + n n
-Var: NumberUnits 1 n + n n	0	0	0
+Var: NumberUnits 1 s + d n	0	0	0
+Param: ShareUnits 0 s + n n	0	0	0
+Var: LiquidityRentsC 0 n + n n
 
 Object: Machinery C	1
 Func: PlaceOrder 0 n + n n
@@ -918,7 +924,7 @@ Param: KSkillBiais 0 n + n n	0	0	0	0	0	0	0	0	0	0
 Param: KP 0 n + n n	0	0	0	0	0	0	0	0	0	0
 
 Object: BankK C	1	1	1	1	1	1	1	1	1	1
-Var: BalanceK 1 n + d n	0	0	0	0	0	0	0	0	0	0
+Var: BalanceK 1 n + n n	0	0	0	0	0	0	0	0	0	0
 Param: KRevenues 0 n + n n	0	0	0	0	0	0	0	0	0	0
 Param: DebtK 0 n + n n	0	0	0	0	0	0	0	0	0	0
 
@@ -966,7 +972,7 @@ Param: IdsFirm 0 n + n n	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1
 Object: Bank C	1
 Param: TotalSavings 1 s + n n	0
 Param: TotalWithdrawals 0 s + n n	0
-Param: TotalCapital 0 n + n n	0.03
+Param: TotalCapital 0 s + n n	0.03
 Param: TotalDividends 0 s + n n	0
 Param: TotalLosses 0 n + n n	0
 Var: UnitValue 1 s + n n	1
@@ -975,9 +981,11 @@ Var: Liquidity 1 s + n n	1000
 Var: OutgoingLiquidity 0 n + n n
 Param: CapitalDemand 0 s + n n	0
 Param: CapitalDestroyed 0 n + n n	0
-Var: TotalNumberUnits 1 s + n n	1000
+Var: TotalNumberUnits 1 s + n n	0
 Var: NewUnits 0 n + n n
 Var: SoldUnits 0 n + n n
+Param: ShareCapital 0 s + n n	0
+Param: InterestRateLiquidity 0 n + n n	0.05
 
 SIM_NUM 1
 SEED 2
@@ -2757,6 +2765,18 @@ _INIT_
 
 END_DESCRIPTION
 
+Parameter_ShareUnits
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Variable_LiquidityRentsC
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
 Object_Machinery
 (no description available )
 _INIT_
@@ -3377,9 +3397,7 @@ END_DESCRIPTION
 
 Parameter_TotalSavings
 (no description available)
-
 _INIT_
-
 
 END_DESCRIPTION
 
@@ -3409,25 +3427,19 @@ END_DESCRIPTION
 
 Variable_UnitValue
 (no description available)
-
 _INIT_
-
 
 END_DESCRIPTION
 
 Variable_TotalValue
 (no description available)
-
 _INIT_
-
 
 END_DESCRIPTION
 
 Variable_Liquidity
 (no description available)
-
 _INIT_
-
 
 END_DESCRIPTION
 
@@ -3439,9 +3451,7 @@ END_DESCRIPTION
 
 Parameter_CapitalDemand
 (no description available)
-
 _INIT_
-
 
 END_DESCRIPTION
 
@@ -3453,20 +3463,29 @@ END_DESCRIPTION
 
 Variable_TotalNumberUnits
 (no description available)
-
 _INIT_
-
 
 END_DESCRIPTION
 
 Variable_NewUnits
 (no description available)
-
 _INIT_
 
 END_DESCRIPTION
 
 Variable_SoldUnits
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_ShareCapital
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_InterestRateLiquidity
 (no description available)
 _INIT_
 

@@ -863,6 +863,9 @@ else
       cur2=SEARCH_CNDS(p->up->up->up,"NumClass",v[18]);
       cur3=ADDOBJS_EX(cur2->up,"Class",cur2);
       cur8=SEARCHS(cur3,"BankC");
+      WRITELS(cur8,"BalanceC",0, t-1);
+      WRITELS(cur8,"DividendsC",0, t-1);
+      WRITELS(cur8,"NumberUnits",0, t-1);
       cur8->hook=cur7;
       cur1->hook=cur3;
       v[44]=VS(cur2,"SavingRate");
@@ -873,6 +876,9 @@ else
       
       WRITES(cur3,"NumClass",v[18]+1);
       WRITELS(cur3,"Expenditure",0, t-1);
+      WRITELLS(cur3,"Expenditure",0, t-1,1);
+      WRITELS(cur3,"Income",0, t-1);
+      WRITELS(cur3,"Consumption",0, t-1);      
       WRITELS(cur3,"ShareWageIncome",0, t-1);
       WRITELS(cur3,"SharePremiaIncome",0, t-1);
       //WRITELS(cur3,"ShareProfitIncome",0, t-1);
@@ -883,6 +889,7 @@ else
       v[35]=VS(cur2,"LorenzInd"); 
       WRITES(cur3,"LorenzInd",v[35]+v[20]); // set total number of workers as previous total plus new workers
       WRITELS(cur3,"NoConsumption",0, t-1); // set the savongs due to unavailability of the good to 0
+      //INTERACTS(cur3,"Created class",v[44]);
       CYCLES(cur3, cur, "Need")
        { // enter in neds and characterisitcs to change the tau parameter (the minimum is set every period)
         v[27]=VS(cur,"IdNeed");
@@ -1124,6 +1131,8 @@ Total value of the assets
 
 v[0]=V("Liquidity");
 v[1]=V("TotalCapital");
+WRITE("ShareCapital",v[1]/(v[0]+v[1]));
+
 RESULT(v[0]+v[1] )
 
 EQUATION("NewUnits")
@@ -1194,6 +1203,7 @@ v[3]=VL("ShareIncome",1);
 v[4]=V("ExIncome");
 v[14]=V("DividendsC");
 v[12]=V("NoConsumption");
+v[20]=V("LiquidityRentsC");
 
 v[5]=v[0]+v[1]+v[3]*v[4]+v[14]+v[12];
 RESULT(v[5])
@@ -1219,7 +1229,25 @@ v[1]=V("Consumption");
 v[2]=V("aEx");
 v[10]=v[0]*v[2]+(1-v[2])*(v[1]);
 v[11]=max(v[10],0);
+//if(t==13)
+ //INTERACT("STOP EXP", v[1]);
 RESULT(v[11] )
+
+EQUATION("LiquidityRentsC")
+/*
+Comment
+*/
+
+v[0]=VLS(p->hook,"TotalNumberUnits",1);
+v[1]=VLS(p->hook,"Liquidity",1);
+v[4]=VS(p->hook,"InterestRateLiquidity");
+v[2]=VL("NumberUnits",1);
+
+if(v[0]>0)
+  v[3]=v[4]*v[1]*v[2]/v[0];
+else
+  v[3]=0;  
+RESULT(v[3])
 
 EQUATION("DividendsC")
 /*
@@ -1230,7 +1258,10 @@ v[0]=VLS(p->hook,"TotalNumberUnits",1);
 v[1]=VLS(p->hook,"TotalDividends",1);
 v[2]=VL("NumberUnits",1);
 
-v[3]=v[1]*v[2]/v[0];
+if(v[0]>0)
+  v[3]=v[1]*v[2]/v[0];
+else
+  v[3]=0;  
 RESULT(v[3])
 
 EQUATION("NumberUnits")
@@ -1242,6 +1273,9 @@ v[1]=VS(p->hook,"UnitValue");
 v[0]=V("BalanceC");
 v[2]=VL("NumberUnits",1);
 v[3]=v[2]+v[0]/v[1];
+v[5]=VS(p->hook,"TotalNumberUnits");
+v[6]=v[3]/v[5];
+WRITE("ShareUnits",v[6]);
 RESULT( v[3])
 
 
@@ -4404,6 +4438,31 @@ CYCLE(cur, "Country")
 
 RESULT(1 )
 
+
+
+EQUATION("TestFinance")
+/*
+Comment
+*/
+v[0]=v[1]=v[2]=v[3]=v[4]=v[5]=0;
+
+CYCLE(cur, "Firm")
+ {
+  v[0]+=VS(cur,"DebtF");
+  v[1]+=VS(cur,"BalanceF");
+  
+ }
+CYCLE(cur, "KFirm")
+ {
+  v[0]+=VS(cur,"DebtK");
+  v[1]+=VS(cur,"BalanceK");
+ }
+
+v[10]=V("TotalCapital");
+
+
+
+RESULT(1 )
 
 
 
