@@ -1992,6 +1992,54 @@ v[24]=V("BacklogValue");
 v[18]=max(0,v[14]) ;//financial constraints
 
 
+v[20]=VL("NetWorth",1)-V("DebtF");//Financial feasibility
+if(v[20]>=v[12]*v[16])
+ {
+  WRITE("RationingRatioFirm",1); 
+  END_EQUATION(v[12]);
+ }
+
+v[21]=v[20]/(v[16]*v[12]);
+v[12]*=v[21];
+
+WRITE("RationingRatioFirm",v[21]); 
+
+
+RESULT(v[12] )
+
+EQUATION("KapitalNeedXXX")
+/*
+Decide whether to order new capital.
+*/
+
+
+v[0]=V("Waiting");
+if(v[0]==1)
+ END_EQUATION(CURRENT);
+ 
+V("MaxLaborProductivity");
+v[3]=V("CapitalCapacity");
+v[4]=V("ExpectedSales");
+v[5]=V("backlog")/10;//a tenth of backlog should be got rid of.
+v[7]=V("DesiredUnusedCapacity");
+v[8]=V("CapitalIntens");
+v[9]=(v[4]+v[5])*v[7];
+
+v[10]=v[9]-v[3];
+v[11]=max(v[10],0);
+if(v[11]==0)
+ END_EQUATION(0);
+ 
+v[12]=v[11]*v[8];//desired capital
+
+v[14]=VL("SmoothProfit",1);
+v[16]=V("AvKPrice");
+v[17]=V("InterestRate");
+v[24]=V("BacklogValue");
+
+v[18]=max(0,v[14]) ;//financial constraints
+
+
 v[20]=VL("BalanceF",1)-V("DebtF");//liquid capital available to invest
 v[21]=V("DivisorLiquidityFinance");
 if(v[20]/v[21]>=v[12]*v[16])

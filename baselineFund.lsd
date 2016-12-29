@@ -985,7 +985,7 @@ Var: TotalNumberUnits 1 s + n n	0
 Var: NewUnits 0 n + n n
 Var: SoldUnits 0 n + n n
 Param: ShareCapital 0 s + n n	0
-Param: InterestRateLiquidity 0 n + n n	0.05
+Param: InterestRateLiquidity 0 n + n n	0.01
 
 SIM_NUM 1
 SEED 2
@@ -2081,7 +2081,9 @@ END_DESCRIPTION
 
 Parameter_RationingRatioFirm
 (no description available)
+
 _INIT_
+
 
 END_DESCRIPTION
 
