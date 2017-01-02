@@ -1086,19 +1086,21 @@ WRITES(cur2,"TotalWithdrawals",v[1]);
 CYCLE(cur, "Firm")
  {
   cur1=SEARCHS(cur,"BankF");
-  v[7]+=VS(cur1,"DebtF");  
-  v[6]=VS(cur,"BalanceF");
+  v[6]=VS(cur1,"BalanceF");
   if(v[6]>0)
    v[2]+=v[6];
   else
-   v[3]-=v[6];
+   {
+    v[3]-=v[6];
+    INCRS(cur1,"DebtF",-v[6]);
+   }
+  v[7]+=VS(cur1,"DebtF");  
   
  }
 
 CYCLE(cur, "KFirm")
  {
   cur1=SEARCHS(cur,"BankK");
-  v[7]+=VS(cur1,"DebtK");  
   v[6]=VS(cur,"BalanceK");
   if(v[6]>0)
    v[2]+=v[6];
@@ -1107,6 +1109,7 @@ CYCLE(cur, "KFirm")
     v[3]-=v[6];
     INCRS(cur1,"DebtK",-v[6]);
    }
+  v[7]+=VS(cur1,"DebtK");   
  }
 
 WRITES(cur2,"TotalCapital",v[7]);
@@ -1119,7 +1122,7 @@ EQUATION("UnitValue")
 The value of a unit varies exogenously depending on a discount rate expressing the growth or fall of value of existing assets
 */
 
-v[0]=VL("UnitValue",1);
+v[0]=VL("TotalNumberUnits",1);
 v[1]=VL("TotalValue",1);
 v[2]=v[1]/v[0];
 RESULT(v[2] )
@@ -1190,7 +1193,8 @@ Lost liquidity
 V("FinancialTrading");
 v[1]=V("TotalWithdrawals");
 v[2]=V("CapitalDemand");
-RESULT(v[1]+v[2])
+v[3]=V("TotalLosses");
+RESULT(v[1]+v[2]+v[3])
 
 EQUATION("Income")
 /*
