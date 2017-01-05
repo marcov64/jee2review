@@ -127,6 +127,18 @@ WRITES(cur,"CapitalDestroyed",0);
 WRITES(cur,"CapitalDemand",0);
 RESULT(1 )
 
+EQUATION("sBalanceF")
+/*
+Comment
+*/
+v[0]=V("BalanceF");
+
+v[1]=CURRENT*0.95+0.05*v[0];
+v[2]=V("DebtF");
+if(v[2]!=0)
+ WRITE("RRoK",v[1]/v[2]);
+RESULT(v[1] )
+
 EQUATION("Exit")
 /*
 Remove firms with too poor Health
@@ -138,7 +150,9 @@ CYCLE_SAFE(cur, "Firm")
  {
 
   v[6]=VS(cur,"Waiting");
-  if(v[6]==0) //don't kill firms waiting for a capital good to be delivered.
+  v[16]=VS(cur,"Age");
+
+  if(v[6]==0 && v[16]>10) //don't kill firms waiting for a capital good to be delivered.
    {
     v[2]=VS(cur->hook,"minHealth");
     v[3]=VS(cur,"Health");
@@ -146,8 +160,10 @@ CYCLE_SAFE(cur, "Firm")
     v[20]=VS(cur2,"DebtF");
     v[70]+=v[20];
     v[7]=VS(cur,"NetWorth");
+    v[17]=VS(cur,"RRoK");
 //    if(v[3]<v[2])
-    if(v[7]<0)
+//    if(v[7]<0)
+    if(v[17]<0.00)
      {v[5]=VS(cur,"Age");
       if(V("ExitFlag")==1)
         INTERACTS(cur,"Dying", v[7]);
@@ -173,7 +189,9 @@ cur=SEARCHS(p->up,"Supply");
 
 VS(cur,"Exit");
 v[3]=V("numExit");
-INCR("NFirmsS",-v[3]);
+v[5]=INCR("NFirmsS",-v[3]);
+if(v[5]<=0)
+ INTERACT("Removed last firm in sector. Likely crash will follow", v[3]);
 if(v[3]>0)
  MULT("AvAgeDeath",1/v[3]);
 
@@ -1706,7 +1724,7 @@ v[20]=0;
 v[30]=VL("Inflation",1);
 CYCLE_SAFE(cur, "Capital")
  {
-  MULTS(cur,"ResellPrice",(1+v[30]));
+//  MULTS(cur,"ResellPrice",(1+v[30]));
 
   v[3]=VS(cur,"K");
   v[4]=VS(cur,"KAge");
@@ -1981,13 +1999,18 @@ v[7]=V("DesiredUnusedCapacity");
 v[8]=V("CapitalIntens");
 v[9]=(v[4]+v[5])*v[7];
 
-v[10]=v[9]-v[3];
+v[23]=V("LaborCapacity");
+v[24]=min(v[9],v[23]*10);//increase K if it is the bottleneck, considering also LaborCapacity
+v[10]=v[24]-v[3];
 v[11]=max(v[10],0);
 if(v[11]==0)
  END_EQUATION(0);
  
 v[12]=v[11]*v[8];//desired capital
 
+END_EQUATION(v[12]);
+
+/////// CANCELED ///////////////
 v[14]=VL("SmoothProfit",1);
 v[16]=V("AvKPrice");
 v[17]=V("InterestRate");
@@ -2084,7 +2107,8 @@ if(v[0]==1)
 v[1]=V("KapitalNeed");
 v[2]=VL("NetWorth",1);
 
-if(v[1]>0 && v[2]>0)
+//if(v[1]>0 && v[2]>0)
+if(v[1]>0)
  {
   v[3]=V("PlaceOrder");
   WRITE("Waiting",1);
@@ -2138,10 +2162,10 @@ Present value of capital
 v[0]=v[1]=0;
 v[5]=V("AvCurrProd");
 v[6]=V("CapitalDepress");
-
+v[2]=V("AvKPrice");
 CYCLES(p->up, cur, "Capital")
  {
-  v[2]=VS(cur,"ResellPrice");
+  //v[2]=VS(cur,"ResellPrice");
   v[3]=VS(cur,"IncProductivity");
   v[4]=VS(cur,"K");
   v[7]=VS(cur,"KAge");
@@ -2252,9 +2276,9 @@ if(VS(cur,"NumOrders")==0)
 else
  cur1=ADDOBJS(cur,"Order");
 
-if(v[44]<v[3]*v[6])
-  v[63]=v[44]/v[6];
-else
+//if(v[44]<v[3]*v[6])
+  //v[63]=v[44]/v[6]; //REMOVED THE RATIONING DUE TO INSUFFICIENT NETWORTH
+//else
  v[63]=v[3];
 
 WRITES(c,"RationingRatioFirm",v[63]/v[3]); 
@@ -2332,7 +2356,7 @@ CYCLE_SAFE(cur, "Order")
       cur5=SEARCH("BankK");
       INCRS(cur5,"KRevenues",v[4]*v[11]);
       
-      WRITES(cur1,"ResellPrice",v[11]*V("DiscountUsedK"));
+//      WRITES(cur1,"ResellPrice",v[11]*V("DiscountUsedK"));
 
       v[20]=INCR("NumOrders",-1);
       if(v[20]>0)
@@ -2680,6 +2704,7 @@ NOTE: probably it makes sense to use levels for all variables. That is, when the
 V("NbrWorkers");
 v[6]=(double)t;
 v[0]=VL("MinWage",1);
+//END_EQUATION(v[0]);
 v[10]=V("InitAggProd"); //the reference level of productivity 
 v[2]=V("MovAvAggProd");
 v[11]=V("IncrAggProd"); 
@@ -2696,7 +2721,7 @@ v[31]=V("maxMinWage");
 v[32]=V("elasMinWage");
 
 v[5]=v[30]+v[31]*pow(v[18],-v[32]);
-
+v[6]=0.95*v[0]+0.05*v[5];
 
 if(v[2]>v[12])
  {
@@ -2719,7 +2744,7 @@ if(v[13]>v[16])
 WRITE("minMinWage",v[30]);
 WRITE("maxMinWage",v[31]);
 
-RESULT(v[5] )
+RESULT(v[6] )
 
 
 EQUATION("AggProductivity")
