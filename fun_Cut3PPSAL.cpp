@@ -163,9 +163,9 @@ CYCLE_SAFE(cur, "Firm")
     v[17]=VS(cur,"RRoK");
 //    if(v[3]<v[2])
 //    if(v[7]<0)
-    if(v[17]<0.00)
+    if(v[17]<0.00 && VS(cur->hook->up,"NFirmsS")>1)
      {v[5]=VS(cur,"Age");
-      if(V("ExitFlag")==1)
+      if(V("ExitFlag")==1 )
         INTERACTS(cur,"Dying", v[7]);
       INCRS(cur->hook->up,"AvAgeDeath",v[5]);
       INCRS(cur->hook->up,"numExit",1);      
@@ -261,6 +261,7 @@ EQUATION("Visibility")
 /*
 Comment
 */
+END_EQUATION(1);
 v[0]=V("backlog");
 v[1]=CURRENT;
 v[2]=V("MonetarySales");

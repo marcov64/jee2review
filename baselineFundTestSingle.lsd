@@ -1,0 +1,3713 @@
+	
+Label Root
+{
+	Son: Stats
+	Label Stats
+	{
+		Son: Country
+		Label Country
+		{
+			Son: Supply
+			Label Supply
+			{
+				Son: Firm
+				Label Firm
+				{
+					Son: PNeed
+					Label PNeed
+					{
+						Son: Ch
+						Label Ch
+						{
+							Param: IdCh
+							Var: x
+							Param: obs_x
+
+						}
+
+						Param: IdPNeed
+
+					}
+
+					Son: Capital
+					Label Capital
+					{
+						Param: IncProductivity
+						Param: IncSkillBiais
+						Param: K
+						Var: KAge
+						Param: KExpenditures
+						Var: MaxKQ
+						Var: IncLearningK
+
+					}
+
+					Son: Labor
+					Label Labor
+					{
+						Var: NumWorkers
+						Var: wage
+						Param: wagecoeff
+						Param: IdLabor
+						Param: nu
+						Param: Premia
+
+					}
+
+					Son: blItem
+					Label blItem
+					{
+						Param: blQ
+						Param: blPrice
+
+					}
+
+					Son: BankF
+					Label BankF
+					{
+						Var: BalanceF
+						Param: DebtF
+						Var: KPresentValue
+						Var: NetWorth
+						Var: BacklogValue
+						Var: sBalanceF
+						Param: RRoK
+
+					}
+
+					Param: IdFirm
+					Var: Stocks
+					Param: MonetarySales
+					Param: DesiredStocks
+					Var: Q
+					Var: price
+					Var: backlog
+					Var: UnitSales
+					Var: ExpectedSales
+					Param: DesiredUnusedCapacity
+					Var: DesiredQ
+					Var: markup
+					Var: Revenues
+					Param: backlogSales
+					Param: numBLI
+					Var: Profit
+					Var: UnitLaborCost
+					Var: InvestmentDecision
+					Param: Waiting
+					Var: UnitDemand
+					Var: KapitalNeed
+					Param: IdTech
+					Var: MaxLaborProductivity
+					Param: CapitalDepress
+					Param: CapitalStock
+					Param: NumK
+					Param: app
+					Var: LaborCost
+					Var: Ms
+					Param: MsSector
+					Param: CapitalCapacity
+					Var: LaborCapacity
+					Param: AvWage
+					Param: betaPrice
+					Param: betaProd
+					Param: betaTime
+					Param: aNW
+					Param: ConstPrice
+					Param: product
+					Var: RdExpenditure
+					Var: ProdInno
+					Param: ProdShockP
+					Var: MovAvExpSales
+					Param: aExpSales
+					Param: tInno
+					Var: MovAvProfit
+					Param: aProfit
+					Var: ExpectedProfit
+					Var: ExpectedProfit2
+					Var: ExpectedProfit3
+					Param: MonetarySalesL
+					Param: zInno
+					Param: roPremia
+					Param: roRD
+					Var: Health
+					Param: aHealth
+					Var: smoothMonSales
+					Param: aMonSales
+					Var: Visibility
+					Var: Age
+					Param: RationingRatioFirm
+					Var: WagePrem
+					Var: SmoothProfit
+					Param: LaborForce
+					Param: RatioVacancies
+					Param: Vacancies
+
+				}
+
+				Param: aES
+				Var: InvHerfIndex
+				Param: TotalSales
+				Param: innoInterval
+				Param: aLearningK
+				Param: minMarkup
+				Func: Entry
+				Var: Exit
+				Func: CounterIdFirm
+				Param: coefMarkupVar
+				Param: TotDebt
+				Param: CapitalIntens
+				Param: ExitFlag
+				Param: DivisorLiquidityFinance
+				Param: capMinWage
+
+			}
+
+			Son: Demand
+			Label Demand
+			{
+				Son: Class
+				Label Class
+				{
+					Son: Need
+					Label Need
+					{
+						Son: DCh
+						Label DCh
+						{
+							Param: IdDCh
+							Param: tau
+							Param: Delta
+							Param: Minimum
+							Param: temp
+							Param: NegativeQuality
+
+						}
+
+						Param: IdNeed
+						Param: Share
+						Param: NumIterations
+						Func: ExpShare
+						Param: endExpShare
+						Param: ProdExists
+						Param: TempIterations
+
+					}
+
+					Son: BankC
+					Label BankC
+					{
+						Var: BalanceC
+						Var: DividendsC
+						Var: NumberUnits
+						Param: ShareUnits
+						Var: LiquidityRentsC
+
+					}
+
+					Param: NumClass
+					Var: Expenditure
+					Var: ShareWageIncome
+					Param: aEx
+					Var: SharePremiaIncome
+					Param: Lorenz
+					Var: ShareIncome
+					Param: Individuals
+					Param: LorenzInd
+					Func: ComputeShare
+					Param: NoConsumption
+					Var: TotIterations
+					Var: ShareExIncome
+					Var: Income
+					Param: PremiaIncome
+					Param: WageIncome
+					Param: tempWage
+					Var: IncomeCapita
+					Var: Consumption
+					Param: SavingRate
+					Var: ShareIndividuals
+					Var: shareConsumption
+
+				}
+
+				Var: IncomeDistribution
+				Param: HerfTotalIncome
+				Param: HerfWageIncome
+				Param: HerfNonWageIncome
+				Param: eta
+				Var: PayTime
+				Var: TotWage
+				Var: TotPremia
+				Var: TotIncome
+				Var: TotIndividuals
+				Var: Atkinson
+				Var: AvIncome
+				Var: TotIncomeCapita
+				Param: InterestRate
+				Param: ExIncome
+				Param: ShareSavingsConsumed
+				Param: SRMultiplier
+				Param: AtkinsonClass
+				Var: TotConsumption
+				Var: MargPropConsume
+				Param: WageIncomeRatio
+				Param: PremiaIncomeRatio
+				Var: TopBotInc
+				Var: TopBotEarn
+				Var: GlobalIncome
+				Var: DecilesRatios
+				Param: IncomeTop1
+				Param: IncomeTop10
+				Param: IncomeBottom90
+				Param: Ratio1-90
+				Param: Ratio10-90
+				Param: ShareIncomeTop01
+				Param: ShareIncomeTop10
+				Param: ShareIncomeBottom90
+
+			}
+
+			Son: Machinery
+			Label Machinery
+			{
+				Son: KFirm
+				Label KFirm
+				{
+					Son: KLabor
+					Label KLabor
+					{
+						Var: KNbrWorkers
+						Var: KWage
+						Param: KWagecoeff
+						Param: KaNW
+						Param: KDesiredUnusedCapacity
+						Param: KLaborProductivity
+						Param: IdKLabor
+						Param: knu
+						Param: KPremia
+
+					}
+
+					Son: KEngineers
+					Label KEngineers
+					{
+						Var: KNbrEngineers
+						Var: KWageEngineers
+						Param: KEWagecoeff
+
+					}
+
+					Son: KCapital
+					Label KCapital
+					{
+						Param: CurrentProductivity
+						Param: CurrentSkillBiais
+						Var: KInnovation
+
+					}
+
+					Son: Order
+					Label Order
+					{
+						Param: KAmount
+						Param: KCompletion
+						Param: TimeWaited
+						Param: Kproductivity
+						Param: KSkillBiais
+						Param: KP
+
+					}
+
+					Son: BankK
+					Label BankK
+					{
+						Var: BalanceK
+						Param: KRevenues
+						Param: DebtK
+
+					}
+
+					Param: IdKTech
+					Var: KQ
+					Param: NumOrders
+					Param: kapp
+					Var: KProductionFlow
+					Var: KPrice
+					Param: z
+					Param: ProductivityShock
+					Param: SkillBiaisShock
+					Var: KProfit
+					Param: EngineersHiring
+					Param: Kmarkup
+					Param: KCumProfit
+					Param: EngineersShare
+					Param: kselect
+					Param: WaitTime
+					Param: AvKWage
+					Param: KConstPrice
+					Var: KWagePrem
+					Var: LaborCostK
+					Param: KVacancies
+					Param: KRatioVacancies
+
+				}
+
+				Func: PlaceOrder
+				Param: AvKPrice
+				Param: AvCurrProd
+				Param: AvWaitTime
+				Param: DiscountUsedK
+				Param: PrudenceLending
+				Param: KEmploymentShare
+				Param: KEmployment
+				Param: KNomGDPShare
+				Param: KOutputShare
+
+			}
+
+			Son: Sectors
+			Label Sectors
+			{
+				Son: sFirm
+				Label sFirm
+				{
+					Param: IdsFirm
+
+				}
+
+				Param: IdGood
+				Param: NFirmsS
+				Param: SInvHerf
+				Param: TotSalesS
+				Param: AvxS
+				Param: AvpS
+				Var: FrontierX
+				Param: maxXS
+				Param: aFrontierX
+				Param: probEntry
+				Param: minHealth
+				Var: Demography
+				Param: SUnitSales
+				Param: SQ
+				Param: SRevenues
+				Param: SProfits
+				Param: SNumFirms
+				Param: SMonetarySales
+				Param: SAvHealth
+				Param: SAvBacklog
+				Param: SAvStock
+				Param: numExit
+				Param: AvAgeDeath
+				Param: SKProductivity
+				Param: SULC
+				Param: Sapp
+				Param: SnumBLI
+				Param: SNetWorth
+				Param: SAvAge
+				Param: SectEmploymentShare
+				Var: SectEmployment
+				Param: SectSales
+				Param: SectNomGDPShare
+				Param: SectOutputShare
+				Param: SectSalesShare
+				Param: SectMechanisation
+
+			}
+
+			Son: Bank
+			Label Bank
+			{
+				Param: TotalSavings
+				Param: TotalWithdrawals
+				Param: TotalCapital
+				Param: TotalDividends
+				Param: TotalLosses
+				Var: UnitValue
+				Var: TotalValue
+				Var: Liquidity
+				Var: OutgoingLiquidity
+				Param: CapitalDemand
+				Param: CapitalDestroyed
+				Var: TotalNumberUnits
+				Var: NewUnits
+				Var: SoldUnits
+				Param: ShareCapital
+				Param: InterestRateLiquidity
+
+			}
+
+			Var: Init
+			Var: Trade
+			Var: Production
+			Var: MinWage
+			Var: AggProductivity
+			Func: TTB_multiplWinner
+			Var: TotUSales
+			Var: AvPrice
+			Var: Inflation
+			Var: MovAvAggProd
+			Param: aAgProd
+			Var: NbrWorkers
+			Param: Hired
+			Var: TotVacancies
+			Param: TotHired
+			Param: beta
+			Param: c
+			Param: JobLoss
+			Param: InitAggProd
+			Param: IncrAggProd
+			Param: InitAvPrice
+			Param: IncrAvPrice
+			Param: aMWL
+			Param: aMWA
+			Param: aMWP
+			Var: MovAvPrice
+			Var: MovAvNbrWork
+			Param: aAvPrice
+			Param: aNbrWork
+			Var: MovAvTotVac
+			Param: aTotVac
+			Param: MovAvTotHired
+			Param: aTotHir
+			Param: TotHiredLag
+			Var: AvWagecoeff
+			Var: TauInit
+			Param: tauMinE
+			Param: tauMaxE
+			Var: MinimumPriceSet
+			Var: Andre
+			Param: tauMax
+			Param: tauMin
+			Param: Aversion
+			Var: GdpNominal
+			Param: GdpConstant
+			Param: IndexYear
+			Var: GdpNGrowth
+			Var: GdpCGrowth
+			Param: Min_x
+			Param: Max_x
+			Var: Init_x
+			Param: AvProfit
+			Param: AvKProfit
+			Param: totNeeds
+			Var: Avx
+			Param: AvAge
+			Param: GdpConstantF
+			Param: GdpConstantK
+			Param: TotalKProduction
+			Param: AvCurrentProductivity
+			Var: ClearExitRecord
+			Var: ShareInit
+			Param: MinimumCMaxW
+			Param: MinimumCMinW
+			Param: MinimumCMaxE
+			Param: MinimumCMinE
+			Param: MinimumPMaxW
+			Param: MinimumPMinW
+			Param: MinimumPMaxE
+			Param: MinimumPMinE
+			Var: MinimumInit
+			Param: AvRatioVacancies
+			Param: tauMinW
+			Param: tauMaxW
+			Param: tauMultiplier
+			Param: UpperMinWage
+			Param: LowerMinWage
+			Var: EmploymentConcentration
+			Param: GDPConcentration
+			Param: OutputConcentration
+			Var: ConsumptionConcentration
+			Var: Mechanisation
+			Var: TotIncomeCapitaReal
+			Var: GDPConstantCapita
+			Param: ConsumptionGdpRatio
+			Param: InvestmentGdpRatio
+			Param: TotAvWage
+			Param: WageGrowth
+			Var: LTUnemployment
+			Var: STUnemployment
+			Param: aLTUR
+			Param: aSTUR
+			Var: UnemploymentRate
+			Param: NaturalUR
+			Param: minMinWage
+			Param: maxMinWage
+			Param: elasMinWage
+			Var: FinancialTrading
+
+		}
+
+		Var: Init_Init
+		Var: Av_Computations
+
+	}
+
+
+}
+
+
+DATA
+
+Object: Root C	1
+
+Object: Stats C	1
+Var: Init_Init 0 n + n n
+Var: Av_Computations 0 n + n n
+
+Object: Country C	1
+Var: Init 0 n + n n
+Var: Trade 0 n + d n
+Var: Production 0 n + n n
+Var: MinWage 1 s + d n	1
+Var: AggProductivity 1 s + n n	1
+Func: TTB_multiplWinner 0 n + n n
+Var: TotUSales 0 n + n n
+Var: AvPrice 1 s + n n	1
+Var: Inflation 1 s + n n	2
+Var: MovAvAggProd 1 s + n n	1
+Param: aAgProd 0 n + n n	0.01
+Var: NbrWorkers 1 s + n n	5
+Param: Hired 0 n + n n	0.2
+Var: TotVacancies 1 s + n n	30
+Param: TotHired 0 n + n n	20
+Param: beta 0 n + n n	0.2
+Param: c 0 n + n n	0
+Param: JobLoss 0 n + n n	0
+Param: InitAggProd 0 s + n n	1
+Param: IncrAggProd 0 n + n n	0.05
+Param: InitAvPrice 0 s + n n	1
+Param: IncrAvPrice 0 n + n n	0.05
+Param: aMWL 0 n + n n	0.05
+Param: aMWA 0 n + n n	0.05
+Param: aMWP 0 n + n n	0.05
+Var: MovAvPrice 1 s + n n	-1
+Var: MovAvNbrWork 1 s + n n	100
+Param: aAvPrice 0 n + n n	0.01
+Param: aNbrWork 0 n + n n	0.05
+Var: MovAvTotVac 1 s + n n	30
+Param: aTotVac 0 n + n n	0.05
+Param: MovAvTotHired 1 n + n n	100
+Param: aTotHir 0 n + n n	0.05
+Param: TotHiredLag 0 n + n n	20
+Var: AvWagecoeff 0 n + n n
+Var: TauInit 0 n + n n
+Param: tauMinE 0 n + n n	0
+Param: tauMaxE 0 n + n n	1
+Var: MinimumPriceSet 0 n + n n
+Var: Andre 0 n + n n
+Param: tauMax 0 n + n n	0.9
+Param: tauMin 0 n + n n	0.1
+Param: Aversion 0 n + n n	0.5
+Var: GdpNominal 1 s + n n	1
+Param: GdpConstant 1 s + n n	0
+Param: IndexYear 0 n + n n	2
+Var: GdpNGrowth 0 s + n n
+Var: GdpCGrowth 0 s + n n
+Param: Min_x 0 n + n n	98
+Param: Max_x 0 n + n n	102
+Var: Init_x 0 n + n n
+Param: AvProfit 0 s + n n	0
+Param: AvKProfit 0 s + n n	0
+Param: totNeeds 0 n + n n	2
+Var: Avx 0 s + n n
+Param: AvAge 0 s + n n	0
+Param: GdpConstantF 0 n + n n	0
+Param: GdpConstantK 0 n + n n	0
+Param: TotalKProduction 0 s + n n	0
+Param: AvCurrentProductivity 0 s + n n	0
+Var: ClearExitRecord 0 n + n n
+Var: ShareInit 0 n + n n
+Param: MinimumCMaxW 0 n + n n	10
+Param: MinimumCMinW 0 n + n n	0
+Param: MinimumCMaxE 0 n + n n	10
+Param: MinimumCMinE 0 n + n n	0
+Param: MinimumPMaxW 0 n + n n	1000
+Param: MinimumPMinW 0 n + n n	100
+Param: MinimumPMaxE 0 n + n n	500
+Param: MinimumPMinE 0 n + n n	100
+Var: MinimumInit 0 n + n n
+Param: AvRatioVacancies 0 s + n n	0
+Param: tauMinW 0 n + n n	1
+Param: tauMaxW 0 n + n n	1
+Param: tauMultiplier 0 n + n n	0.25
+Param: UpperMinWage 0 n + n n	1.02
+Param: LowerMinWage 0 n + n n	0.98
+Var: EmploymentConcentration 0 s + n n
+Param: GDPConcentration 0 s + n n	0
+Param: OutputConcentration 0 n + n n	0
+Var: ConsumptionConcentration 0 s + n n
+Var: Mechanisation 0 s + n n
+Var: TotIncomeCapitaReal 0 s + n n
+Var: GDPConstantCapita 0 s + n n
+Param: ConsumptionGdpRatio 0 s + n n	0
+Param: InvestmentGdpRatio 0 s + n n	0
+Param: TotAvWage 0 s + n n	0
+Param: WageGrowth 0 s + n n	0
+Var: LTUnemployment 1 s + n n	0.1
+Var: STUnemployment 1 s + n n	0.1
+Param: aLTUR 0 n + n n	0.995
+Param: aSTUR 0 n + n n	0.99
+Var: UnemploymentRate 0 s + n n
+Param: NaturalUR 0 n + n n	0.2
+Param: minMinWage 0 n + n n	0
+Param: maxMinWage 0 n + n n	1
+Param: elasMinWage 0 n + n n	0.01
+Var: FinancialTrading 0 n + n n
+
+Object: Supply C	1
+Param: aES 0 n + n n	0.9
+Var: InvHerfIndex 0 s + n n
+Param: TotalSales 0 n + n n	0
+Param: innoInterval 0 n + n n	10
+Param: aLearningK 0 n + n n	0
+Param: minMarkup 0 n + n n	0.15
+Func: Entry 0 n + n n
+Var: Exit 0 n + n n
+Func: CounterIdFirm 1 n + n n	100
+Param: coefMarkupVar 0 n + n n	0.3
+Param: TotDebt 0 s + n n	0
+Param: CapitalIntens 0 n + n n	2
+Param: ExitFlag 0 n + n n	0
+Param: DivisorLiquidityFinance 0 n + n n	20
+Param: capMinWage 0 n + n n	0.04
+
+Object: Firm C	100
+Param: IdFirm 0 n + n n	1	2	3	4	5	6	7	8	9	10	11	12	13	14	15	16	17	18	19	20	21	22	23	24	25	26	27	28	29	30	31	32	33	34	35	36	37	38	39	40	41	42	43	44	45	46	47	48	49	50	51	52	53	54	55	56	57	58	59	60	61	62	63	64	65	66	67	68	69	70	71	72	73	74	75	76	77	78	79	80	81	82	83	84	85	86	87	88	89	90	91	92	93	94	95	96	97	98	99	100
+Var: Stocks 1 n + n n	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Param: MonetarySales 0 n + n n	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Param: DesiredStocks 0 n + n n	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1
+Var: Q 1 n + n n	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+Var: price 1 n + n n	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2
+Var: backlog 1 n + n n	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Var: UnitSales 0 n + n n
+Var: ExpectedSales 1 n + n n	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+Param: DesiredUnusedCapacity 0 n + n n	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05	1.05
+Var: DesiredQ 0 n + n n
+Var: markup 0 n + n n
+Var: Revenues 0 n + n n
+Param: backlogSales 0 n + n n	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Param: numBLI 0 n + n n	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Var: Profit 1 n + n n	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+Var: UnitLaborCost 0 n + n n
+Var: InvestmentDecision 0 n + n n
+Param: Waiting 0 n + n n	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Var: UnitDemand 0 n + n n
+Var: KapitalNeed 0 n + n n
+Param: IdTech 0 n + n n	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+Var: MaxLaborProductivity 1 n + n n	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+Param: CapitalDepress 0 n + n n	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001
+Param: CapitalStock 1 n + n n	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+Param: NumK 0 n + n n	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Param: app 0 n + n n	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Var: LaborCost 0 n + n n
+Var: Ms 1 n + n n	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01
+Param: MsSector 0 n + n n	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07	0.07
+Param: CapitalCapacity 0 n + n n	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Var: LaborCapacity 0 n + n n
+Param: AvWage 0 n + n n	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Param: betaPrice 0 n + n n	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+Param: betaProd 0 n + n n	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+Param: betaTime 0 n + n n	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+Param: aNW 0 n + n n	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9
+Param: ConstPrice 0 n + n n	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+Param: product 0 n + n n	1	1	1	1	1	1	1	1	1	1	2	2	2	2	2	2	2	2	2	2	3	3	3	3	3	3	3	3	3	3	4	4	4	4	4	4	4	4	4	4	5	5	5	5	5	5	5	5	5	5	6	6	6	6	6	6	6	6	6	6	7	7	7	7	7	7	7	7	7	7	8	8	8	8	8	8	8	8	8	8	9	9	9	9	9	9	9	9	9	9	10	10	10	10	10	10	10	10	10	10
+Var: RdExpenditure 0 n + n n
+Var: ProdInno 0 n + n n
+Param: ProdShockP 0 n + n n	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01
+Var: MovAvExpSales 1 n + n n	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+Param: aExpSales 0 n + n n	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05
+Param: tInno 0 n + n n	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Var: MovAvProfit 1 n + n n	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+Param: aProfit 0 n + n n	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05
+Var: ExpectedProfit 0 n + n n
+Var: ExpectedProfit2 0 n + n n
+Var: ExpectedProfit3 0 n + n n
+Param: MonetarySalesL 0 n + n n	4	4	4	4	4	4	4	4	4	4	4	4	4	4	4	4	4	4	4	4	4	4	4	4	4	4	4	4	4	4	4	4	4	4	4	4	4	4	4	4	4	4	4	4	4	4	4	4	4	4	4	4	4	4	4	4	4	4	4	4	4	4	4	4	4	4	4	4	4	4	4	4	4	4	4	4	4	4	4	4	4	4	4	4	4	4	4	4	4	4	4	4	4	4	4	4	4	4	4	4
+Param: zInno 0 n + n n	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05
+Param: roPremia 0 n + n n	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15	0.15
+Param: roRD 0 n + n n	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2	0.2
+Var: Health 1 n + n n	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+Param: aHealth 0 n + n n	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9
+Var: smoothMonSales 1 n + n n	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100
+Param: aMonSales 0 n + n n	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9
+Var: Visibility 1 n + n n	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+Var: Age 1 n + n n	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Param: RationingRatioFirm 0 n + n n	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Var: WagePrem 0 n + n n
+Var: SmoothProfit 1 n + n n	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1
+Param: LaborForce 0 n + n n	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Param: RatioVacancies 0 n + n n	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Param: Vacancies 0 n + n n	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30	30
+
+Object: PNeed C	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+Param: IdPNeed 0 n + n n	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+
+Object: Ch C	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2
+Param: IdCh 0 n + n n	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2
+Var: x 1 n + n n	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0	0.2	0
+Param: obs_x 0 n + n n	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+
+Object: Capital C	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+Param: IncProductivity 0 n + n n	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+Param: IncSkillBiais 0 n + n n	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5
+Param: K 0 n + n n	10	10	10	10	10	10	10	10	10	10	10	10	10	10	10	10	10	10	10	10	10	10	10	10	10	10	10	10	10	10	10	10	10	10	10	10	10	10	10	10	10	10	10	10	10	10	10	10	10	10	10	10	10	10	10	10	10	10	10	10	10	10	10	10	10	10	10	10	10	10	10	10	10	10	10	10	10	10	10	10	10	10	10	10	10	10	10	10	10	10	10	10	10	10	10	10	10	10	10	10
+Var: KAge 1 n + n n	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1
+Param: KExpenditures 0 n + n n	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Var: MaxKQ 0 n + n n
+Var: IncLearningK 1 n + n n	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+
+Object: Labor C	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2
+Var: NumWorkers 1 n + n n	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+Var: wage 1 n + n n	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69	1.3	1.69
+Param: wagecoeff 0 n + n n	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3	1.3
+Param: IdLabor 0 n + n n	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2
+Param: nu 0 n + n n	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3	3
+Param: Premia 0 n + n n	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+
+Object: blItem C	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+Param: blQ 0 n + n n	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Param: blPrice 0 n + n n	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+
+Object: BankF C	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+Var: BalanceF 1 n + n n	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100	100
+Param: DebtF 0 n + n n	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Var: KPresentValue 0 n + n n
+Var: NetWorth 1 n + n n	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+Var: BacklogValue 0 n + n n
+Var: sBalanceF 1 n + n n	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+Param: RRoK 0 n + n n	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+
+Object: Demand C	1
+Var: IncomeDistribution 0 n + n n
+Param: HerfTotalIncome 0 n + n n	0
+Param: HerfWageIncome 0 n + n n	0
+Param: HerfNonWageIncome 0 n + n n	0
+Param: eta 0 n + n n	0.4
+Var: PayTime 0 n + n n
+Var: TotWage 0 s + n n
+Var: TotPremia 0 s + n n
+Var: TotIncome 0 s + n n
+Var: TotIndividuals 0 s + n n
+Var: Atkinson 0 s + n n
+Var: AvIncome 0 s + n n
+Var: TotIncomeCapita 0 s + n n
+Param: InterestRate 0 n + n n	0.05
+Param: ExIncome 0 n + n n	200
+Param: ShareSavingsConsumed 0 n + n n	0.03
+Param: SRMultiplier 0 n + n n	0.2
+Param: AtkinsonClass 0 s + n n	0
+Var: TotConsumption 0 s + n n
+Var: MargPropConsume 0 s + n n
+Param: WageIncomeRatio 0 s + n n	0
+Param: PremiaIncomeRatio 0 s + n n	0
+Var: TopBotInc 0 s + n n
+Var: TopBotEarn 0 s + n n
+Var: GlobalIncome 0 s + n n
+Var: DecilesRatios 0 n + n n
+Param: IncomeTop1 0 s + n n	0
+Param: IncomeTop10 0 s + n n	0
+Param: IncomeBottom90 0 s + n n	0
+Param: Ratio1-90 0 s + n n	0
+Param: Ratio10-90 0 s + n n	0
+Param: ShareIncomeTop01 0 s + n n	0
+Param: ShareIncomeTop10 0 s + n n	0
+Param: ShareIncomeBottom90 0 s + n n	0
+
+Object: Class C	3
+Param: NumClass 0 n + n n	0	1	2
+Var: Expenditure 1 s + n n	0	100	100
+Var: ShareWageIncome 1 s + n n	0.33	0.33	0.33
+Param: aEx 0 n + n n	0.8	0.8	0.8
+Var: SharePremiaIncome 1 s + n n	0	0	1
+Param: Lorenz 0 n + n n	0	0	0
+Var: ShareIncome 1 n + n n	0.33	0.33	0.33
+Param: Individuals 0 s + n n	0	0	0
+Param: LorenzInd 0 n + n n	0	0	0
+Func: ComputeShare 0 n + n n
+Param: NoConsumption 0 n + n n	0	0	0
+Var: TotIterations 0 n + n n
+Var: ShareExIncome 0 n + n n
+Var: Income 1 s + n n	0	100	100
+Param: PremiaIncome 0 s + n n	0	0	0
+Param: WageIncome 1 s + n n	0	0	0
+Param: tempWage 0 n + n n	0	0	0
+Var: IncomeCapita 0 s + n n
+Var: Consumption 0 s + n n
+Param: SavingRate 0 n + n n	0.15	0.05	0.05
+Var: ShareIndividuals 0 s + n n
+Var: shareConsumption 0 s + n n
+
+Object: Need C	10	10	10
+Param: IdNeed 0 n + n n	1	2	3	4	5	6	7	8	9	10	1	2	3	4	5	6	7	8	9	10	1	2	3	4	5	6	7	8	9	10
+Param: Share 0 n + n n	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.212	0.098	0.262	0.03	0.035	0.051	0.021	0.136	0.1	0.055	0.212	0.098	0.262	0.03	0.035	0.051	0.021	0.136	0.1	0.055
+Param: NumIterations 0 n + n n	10	10	10	10	10	10	10	10	10	10	27	17	15	13	10	7	4	3	3	1	0	0	0	50	50	50	50	50	50	50
+Func: ExpShare 0 n + n n
+Param: endExpShare 0 n + n n	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.147	0.018	0.117	0.058	0.037	0.166	0.027	0.151	0.248	0.03	0.147	0.018	0.117	0.058	0.037	0.166	0.027	0.151	0.248	0.03
+Param: ProdExists 0 n + n n	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+Param: TempIterations 0 n + n n	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+
+Object: DCh C	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2
+Param: IdDCh 0 n + n n	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2
+Param: tau 0 n + n n	0.8	0.97	0.8	0.97	0.8	0.97	0.8	0.97	0.8	0.97	0.8	0.97	0.8	0.97	0.8	0.97	0.8	0.97	0.8	0.97	0.8	0.97	0.8	0.97	0.8	0.97	0.8	0.97	0.8	0.97	0.8	0.97	0.8	0.97	0.8	0.97	0.8	0.97	0.8	0.97	0.8	0.97	0.8	0.97	0.8	0.97	0.8	0.97	0.8	0.97	0.8	0.97	0.8	0.97	0.8	0.97	0.8	0.97	0.8	0.97
+Param: Delta 0 n + n n	0.05	0.1	0.05	0.1	0.05	0.1	0.05	0.1	0.05	0.1	0.05	0.1	0.05	0.1	0.05	0.1	0.05	0.1	0.05	0.1	0.05	0.1	0.05	0.1	0.05	0.1	0.05	0.1	0.05	0.1	0.05	0.1	0.05	0.1	0.05	0.1	0.05	0.1	0.05	0.1	0.05	0.1	0.05	0.1	0.05	0.1	0.05	0.1	0.05	0.1	0.05	0.1	0.05	0.1	0.05	0.1	0.05	0.1	0.05	0.1
+Param: Minimum 0 n + n n	700	98	700	98	700	98	700	98	700	98	700	98	700	98	700	98	700	98	700	98	700	98	700	98	700	98	700	98	700	98	700	98	700	98	700	98	700	98	700	98	700	98	700	98	700	98	700	98	700	98	700	98	700	98	700	98	700	98	700	98
+Param: temp 0 n + n n	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Param: NegativeQuality 0 n + n n	-1	1	-1	1	-1	1	-1	1	-1	1	-1	1	-1	1	-1	1	-1	1	-1	1	-1	1	-1	1	-1	1	-1	1	-1	1	-1	1	-1	1	-1	1	-1	1	-1	1	-1	1	-1	1	-1	1	-1	1	-1	1	-1	1	-1	1	-1	1	-1	1	-1	1
+
+Object: BankC C	1	1	1
+Var: BalanceC 1 s + n n	0	0	0
+Var: DividendsC 0 s + n n
+Var: NumberUnits 1 s + n n	0	0	0
+Param: ShareUnits 0 s + n n	0	0	0
+Var: LiquidityRentsC 0 n + n n
+
+Object: Machinery C	1
+Func: PlaceOrder 0 n + n n
+Param: AvKPrice 0 s + n n	15
+Param: AvCurrProd 0 n + n n	1
+Param: AvWaitTime 0 n + n n	0
+Param: DiscountUsedK 0 n + n n	1
+Param: PrudenceLending 0 n + n n	1
+Param: KEmploymentShare 0 s + n n	0
+Param: KEmployment 0 n + n n	0
+Param: KNomGDPShare 0 s + n n	0
+Param: KOutputShare 0 s + n n	0
+
+Object: KFirm C	10
+Param: IdKTech 0 n + n n	1	1	1	1	1	1	1	1	1	1
+Var: KQ 0 n + n n
+Param: NumOrders 0 n + n n	0	0	0	0	0	0	0	0	0	0
+Param: kapp 0 n + n n	0	0	0	0	0	0	0	0	0	0
+Var: KProductionFlow 0 s + n n
+Var: KPrice 1 n + n n	1	1	1	1	1	1	1	1	1	1
+Param: z 0 n + n n	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01
+Param: ProductivityShock 0 n + n n	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01
+Param: SkillBiaisShock 0 n + n n	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01
+Var: KProfit 0 n + n n
+Param: EngineersHiring 0 n + n n	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05
+Param: Kmarkup 0 n + n n	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5	0.5
+Param: KCumProfit 1 n + n n	2	2	2	2	2	2	2	2	2	2
+Param: EngineersShare 0 n + n n	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1
+Param: kselect 0 n + n n	1	1	1	1	1	1	1	1	1	1
+Param: WaitTime 0 s + n n	1	1	1	1	1	1	1	1	1	1
+Param: AvKWage 0 n + n n	0	0	0	0	0	0	0	0	0	0
+Param: KConstPrice 0 n + n n	1	1	1	1	1	1	1	1	1	1
+Var: KWagePrem 0 n + n n
+Var: LaborCostK 0 n + n n
+Param: KVacancies 0 n + n n	0	0	0	0	0	0	0	0	0	0
+Param: KRatioVacancies 0 n + n n	0	0	0	0	0	0	0	0	0	0
+
+Object: KLabor C	2	2	2	2	2	2	2	2	2	2
+Var: KNbrWorkers 1 n + n n	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+Var: KWage 1 n + n n	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+Param: KWagecoeff 0 n + n n	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2
+Param: KaNW 0 n + n n	0.6	0.6	0.6	0.6	0.6	0.6	0.6	0.6	0.6	0.6	0.6	0.6	0.6	0.6	0.6	0.6	0.6	0.6	0.6	0.6
+Param: KDesiredUnusedCapacity 0 n + n n	1.2	1.2	1.2	1.2	1.2	1.2	1.2	1.2	1.2	1.2	1.2	1.2	1.2	1.2	1.2	1.2	1.2	1.2	1.2	1.2
+Param: KLaborProductivity 0 n + n n	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+Param: IdKLabor 0 n + n n	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2	1	2
+Param: knu 0 n + n n	5	5	5	5	5	5	5	5	5	5	5	5	5	5	5	5	5	5	5	5
+Param: KPremia 0 n + n n	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+
+Object: KEngineers C	1	1	1	1	1	1	1	1	1	1
+Var: KNbrEngineers 1 s + n n	0	0	0	0	0	0	0	0	0	0
+Var: KWageEngineers 1 n + n n	0	0	0	0	0	0	0	0	0	0
+Param: KEWagecoeff 0 n + n n	1.5	1.5	1.5	1.5	1.5	1.5	1.5	1.5	1.5	1.5
+
+Object: KCapital C	1	1	1	1	1	1	1	1	1	1
+Param: CurrentProductivity 0 n + n n	1	1	1	1	1	1	1	1	1	1
+Param: CurrentSkillBiais 0 n + n n	0.6	0.6	0.6	0.6	0.6	0.6	0.6	0.6	0.6	0.6
+Var: KInnovation 0 n + n n
+
+Object: Order C	1	1	1	1	1	1	1	1	1	1
+Param: KAmount 0 n + n n	0	0	0	0	0	0	0	0	0	0
+Param: KCompletion 0 n + n n	0	0	0	0	0	0	0	0	0	0
+Param: TimeWaited 0 n + n n	0	0	0	0	0	0	0	0	0	0
+Param: Kproductivity 0 n + n n	0	0	0	0	0	0	0	0	0	0
+Param: KSkillBiais 0 n + n n	0	0	0	0	0	0	0	0	0	0
+Param: KP 0 n + n n	0	0	0	0	0	0	0	0	0	0
+
+Object: BankK C	1	1	1	1	1	1	1	1	1	1
+Var: BalanceK 1 n + n n	0	0	0	0	0	0	0	0	0	0
+Param: KRevenues 0 n + n n	0	0	0	0	0	0	0	0	0	0
+Param: DebtK 0 n + n n	0	0	0	0	0	0	0	0	0	0
+
+Object: Sectors C	10
+Param: IdGood 0 n + n n	1	2	3	4	5	6	7	8	9	10
+Param: NFirmsS 0 n + n n	0	0	0	0	0	0	0	0	0	0
+Param: SInvHerf 0 s + n n	0	0	0	0	0	0	0	0	0	0
+Param: TotSalesS 0 n + n n	5	5	0	0	0	0	0	0	0	0
+Param: AvxS 0 s + n n	0	0	0	0	0	0	0	0	0	0
+Param: AvpS 0 s + n n	0	0	0	0	0	0	0	0	0	0
+Var: FrontierX 1 s + n n	100	100	100	100	100	100	100	100	100	100
+Param: maxXS 0 s + n n	0	0	0	0	0	0	0	0	0	0
+Param: aFrontierX 0 n + n n	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9
+Param: probEntry 0 n + n n	0.08	0.08	0.08	0.08	0.08	0.08	0.08	0.08	0.08	0.08
+Param: minHealth 0 n + n n	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05	0.05
+Var: Demography 0 n + n n
+Param: SUnitSales 0 s + n n	0	0	0	0	0	0	0	0	0	0
+Param: SQ 0 s + n n	0	0	0	0	0	0	0	0	0	0
+Param: SRevenues 0 s + n n	0	0	0	0	0	0	0	0	0	0
+Param: SProfits 0 s + n n	0	0	0	0	0	0	0	0	0	0
+Param: SNumFirms 0 s + n n	0	0	0	0	0	0	0	0	0	0
+Param: SMonetarySales 0 s + n n	0	0	0	0	0	0	0	0	0	0
+Param: SAvHealth 0 s + n n	0	0	0	0	0	0	0	0	0	0
+Param: SAvBacklog 0 s + n n	0	0	0	0	0	0	0	0	0	0
+Param: SAvStock 0 s + n n	0	0	0	0	0	0	0	0	0	0
+Param: numExit 0 s + n n	0	0	0	0	0	0	0	0	0	0
+Param: AvAgeDeath 0 s + n n	0	0	0	0	0	0	0	0	0	0
+Param: SKProductivity 0 s + n n	0	0	0	0	0	0	0	0	0	0
+Param: SULC 0 s + n n	0	0	0	0	0	0	0	0	0	0
+Param: Sapp 0 n + n n	0	0	0	0	0	0	0	0	0	0
+Param: SnumBLI 0 s + n n	0	0	0	0	0	0	0	0	0	0
+Param: SNetWorth 0 s + n n	0	0	0	0	0	0	0	0	0	0
+Param: SAvAge 0 s + n n	0	0	0	0	0	0	0	0	0	0
+Param: SectEmploymentShare 0 s + n n	0	0	0	0	0	0	0	0	0	0
+Var: SectEmployment 0 s + n n
+Param: SectSales 0 s + n n	0	0	0	0	0	0	0	0	0	0
+Param: SectNomGDPShare 0 s + n n	0	0	0	0	0	0	0	0	0	0
+Param: SectOutputShare 0 s + n n	0	0	0	0	0	0	0	0	0	0
+Param: SectSalesShare 0 s + n n	0	0	0	0	0	0	0	0	0	0
+Param: SectMechanisation 0 s + n n	0	0	0	0	0	0	0	0	0	0
+
+Object: sFirm C	1	1	1	1	1	1	1	1	1	1
+Param: IdsFirm 0 n + n n	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1
+
+Object: Bank C	1
+Param: TotalSavings 1 s + n n	0
+Param: TotalWithdrawals 0 s + n n	0
+Param: TotalCapital 0 s + n n	0.03
+Param: TotalDividends 0 s + n n	0
+Param: TotalLosses 0 n + n n	0
+Var: UnitValue 1 s + n n	1
+Var: TotalValue 1 s + n n	1000
+Var: Liquidity 1 s + n n	1000
+Var: OutgoingLiquidity 0 n + n n
+Param: CapitalDemand 0 s + n n	0
+Param: CapitalDestroyed 0 n + n n	0
+Var: TotalNumberUnits 1 s + n n	1000
+Var: NewUnits 0 n + n n
+Var: SoldUnits 0 n + n n
+Param: ShareCapital 0 s + n n	0
+Param: InterestRateLiquidity 0 n + n n	0
+
+SIM_NUM 1
+SEED 3
+MAX_STEP 5000
+EQUATION fun_Cut3PPSAL.cpp
+ MODELREPORT report_baselineFund.html
+
+DESCRIPTION
+
+Object_Root
+(no description available)
+END_DESCRIPTION
+
+Object_Stats
+Object with aggregate statistics across runs
+_INIT_
+
+END_DESCRIPTION
+
+Variable_Init_Init
+Requires first to initialise all the simulation runs
+_INIT_
+
+END_DESCRIPTION
+
+Variable_Av_Computations
+Activate the equation for income distribution HI, Lorenz curve
+_INIT_
+
+END_DESCRIPTION
+
+Object_Country
+(no description available )
+_INIT_
+
+END_DESCRIPTION
+
+Variable_Init
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Variable_Trade
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Variable_Production
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Variable_MinWage
+(no description available)
+_INIT_
+ All 1 instances equal to 1.
+END_DESCRIPTION
+
+Variable_AggProductivity
+(no description available)
+_INIT_
+ All 5 instances equal to 1.
+END_DESCRIPTION
+
+Function_TTB_multiplWinner
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Variable_TotUSales
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Variable_AvPrice
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Variable_Inflation
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Variable_MovAvAggProd
+(no description available)
+_INIT_
+ All 5 instances equal to 1.
+END_DESCRIPTION
+
+Parameter_aAgProd
+(no description available)
+_INIT_
+ All 1 instances equal to 0.01.
+END_DESCRIPTION
+
+Variable_NbrWorkers
+(no description available)
+_INIT_
+ All 1 instances equal to 5.
+END_DESCRIPTION
+
+Parameter_Hired
+'Hired' appears in the equation for: Vacancies.
+_INIT_
+ All 1 instances equal to 100.
+END_DESCRIPTION
+
+Variable_TotVacancies
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_TotHired
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_beta
+'beta' appears in the equation for: MovAvUnemp1, MovAvUnemp2, Unemp.
+_INIT_
+ All 1 instances equal to 0.5.
+END_DESCRIPTION
+
+Parameter_c
+(no description available)
+_INIT_
+ All 1 instances equal to 100.
+END_DESCRIPTION
+
+Parameter_JobLoss
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_InitAggProd
+(no description available)
+_INIT_
+ All 5 instances equal to 1.
+END_DESCRIPTION
+
+Parameter_IncrAggProd
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_InitAvPrice
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_IncrAvPrice
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_aMWL
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_aMWA
+(no description available)
+_INIT_
+ All 1 instances equal to 0.5.
+END_DESCRIPTION
+
+Parameter_aMWP
+(no description available)
+_INIT_
+ All 1 instances equal to 0.5.
+END_DESCRIPTION
+
+Variable_MovAvPrice
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Variable_MovAvNbrWork
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_aAvPrice
+(no description available)
+_INIT_
+ All 1 instances equal to 0.01.
+END_DESCRIPTION
+
+Parameter_aNbrWork
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Variable_MovAvTotVac
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_aTotVac
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_MovAvTotHired
+(no description available)
+_INIT_
+ All 1 instances equal to 100.
+END_DESCRIPTION
+
+Parameter_aTotHir
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_TotHiredLag
+'TotHiredLag' appears in the equation for: Vacancies, MovAvTotHired.
+_INIT_
+
+END_DESCRIPTION
+
+Variable_AvWagecoeff
+Average of the wage multiplier, in case they are different between firms (or capital and final good firms), to be used as a multiplier of the `minimum' parameter for consumers classes of executives
+_INIT_
+
+END_DESCRIPTION
+
+Variable_TauInit
+Set the initial values for the preferences (tolerance toward difference from max char in the market) across classes, needs and characteristics
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_tauMinE
+minimum level of tolerance toward the best product in the market, for engineers
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_tauMaxE
+maximum level of tolerance toward the best product in the market, for engineers
+_INIT_
+
+END_DESCRIPTION
+
+Variable_MinimumPriceSet
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Variable_Andre
+Generates values of the income shares to compute the Lorentz curve in the analysis of results (cross section with sequence data of the Par 'Lorenz')
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_tauMax
+Maximum level that can be reached by the tolerance level relative to maximum quality of a good
+_INIT_
+ All 1 instances equal to 0.8.
+END_DESCRIPTION
+
+Parameter_tauMin
+The minimum level that can be reached by tolerance level toward price
+_INIT_
+ All 1 instances equal to 0.2.
+END_DESCRIPTION
+
+Parameter_Aversion
+parmeter for the aversion to inequality (changes which end of the income distribution has a higher weight in the index computation) in the atkinson index
+_INIT_
+ All 1 instances equal to 0.
+END_DESCRIPTION
+
+Variable_GdpNominal
+(no description available)
+_INIT_
+ All 1 instances equal to 1.
+END_DESCRIPTION
+
+Parameter_GdpConstant
+(no description available)
+_INIT_
+ All 1 instances equal to 1.
+END_DESCRIPTION
+
+Parameter_IndexYear
+(no description available)
+_INIT_
+ All 1 instances equal to 2.
+END_DESCRIPTION
+
+Variable_GdpNGrowth
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Variable_GdpCGrowth
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_Min_x
+Minum level of the initial value of x
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_Max_x
+Maximum value of the initial level of x for quality charachteristics
+_INIT_
+
+END_DESCRIPTION
+
+Variable_Init_x
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_AvProfit
+Average profits across firms
+
+'AvProfit' appears in the equation for: Av_Computations, Av_AvProfit, Sd_AvProfit.
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_AvKProfit
+Average of the capital firms profits
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_totNeeds
+Total number of needs in the market
+_INIT_
+ All 1 instances equal to 2.
+END_DESCRIPTION
+
+Variable_Avx
+Average value of the quality characteristic (non price characteristic)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_AvAge
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_GdpConstantF
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_GdpConstantK
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_TotalKProduction
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_AvCurrentProductivity
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Variable_ClearExitRecord
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Variable_ShareInit
+Initialise the expenditure shares of the needs for the classes above the first one
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_MinimumCMaxW
+maximum value of the minimum parameter on any quality characteristic for workers
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_MinimumCMinW
+minimum value of the minimum parameter on any quality characteristic for workers
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_MinimumCMaxE
+maximum value of the minimum parameter on any quality characteristic for engineers
+_INIT_
+ All 1 instances equal to 10.
+END_DESCRIPTION
+
+Parameter_MinimumCMinE
+minimum value of the minimum parameter on any quality characteristic for engineers
+_INIT_
+ All 1 instances equal to 0.
+END_DESCRIPTION
+
+Parameter_MinimumPMaxW
+maximum value of the minimum parameter on price for workers
+_INIT_
+ All 1 instances equal to 0.
+END_DESCRIPTION
+
+Parameter_MinimumPMinW
+minimum value of the minimum parameter on price for workers
+_INIT_
+ All 1 instances equal to 1000.
+END_DESCRIPTION
+
+Parameter_MinimumPMaxE
+maximum value of the minimum parameter on price for engineers
+_INIT_
+ All 1 instances equal to 10000.
+END_DESCRIPTION
+
+Parameter_MinimumPMinE
+minimum value of the minimum parameter on price for engineers
+_INIT_
+ All 1 instances equal to 0.
+END_DESCRIPTION
+
+Variable_MinimumInit
+Initialisation of the minimum parameter across classes, needs and chars
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_AvRatioVacancies
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_tauMinW
+minimum level of tolerance toward the best product in the market, for workers: it should be set differently for the price and quality goods
+_INIT_
+ All 18 instances equal to 0.9.
+END_DESCRIPTION
+
+Parameter_tauMaxW
+maximum level of tolerance toward the best product in the market, for wokers: it should be set diffrently for price and quality features
+_INIT_
+ All 18 instances equal to 0.9. Instances from 2 to 10000 equal to 0.1.
+END_DESCRIPTION
+
+Parameter_tauMultiplier
+Differences in the tolerance level between classes
+_INIT_
+ All 6 instances equal to 0.2.
+END_DESCRIPTION
+
+Parameter_UpperMinWage
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_LowerMinWage
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Variable_EmploymentConcentration
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_GDPConcentration
+(no description available)
+_INIT_
+ All 1 instances equal to 0.
+END_DESCRIPTION
+
+Parameter_OutputConcentration
+(no description available)
+_INIT_
+ All 1 instances equal to 0.
+END_DESCRIPTION
+
+Variable_ConsumptionConcentration
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Variable_Mechanisation
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Variable_TotIncomeCapitaReal
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Variable_GDPConstantCapita
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_ConsumptionGdpRatio
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_InvestmentGdpRatio
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_TotAvWage
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_WageGrowth
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Variable_LTUnemployment
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Variable_STUnemployment
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_aLTUR
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_aSTUR
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Variable_UnemploymentRate
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_NaturalUR
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_minMinWage
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_maxMinWage
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_elasMinWage
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Variable_FinancialTrading
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Object_Supply
+(no description available )
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_aES
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Variable_InvHerfIndex
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_TotalSales
+(no description available)
+_INIT_
+ All 1 instances equal to 0.
+END_DESCRIPTION
+
+Parameter_innoInterval
+Minimum inteval of time between the introduction of two product innovations
+_INIT_
+ All 1 instances equal to 10.
+END_DESCRIPTION
+
+Parameter_aLearningK
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_minMarkup
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Function_Entry
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Variable_Exit
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Function_CounterIdFirm
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_coefMarkupVar
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_TotDebt
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_CapitalIntens
+Unit of capital you need to produce 1 unit of good.
+_INIT_
+2
+END_DESCRIPTION
+
+Parameter_ExitFlag
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_DivisorLiquidityFinance
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_capMinWage
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Object_Firm
+(no description available )
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_IdFirm
+(no description available)
+_INIT_
+ All 100 instances increasing from 1 with steps 1. The value is increased every 1 instances.
+END_DESCRIPTION
+
+Variable_Stocks
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_MonetarySales
+(no description available)
+_INIT_
+ All 100 instances equal to 0.
+END_DESCRIPTION
+
+Parameter_DesiredStocks
+(no description available)
+_INIT_
+ All 100 instances equal to 0.1.
+END_DESCRIPTION
+
+Variable_Q
+(no description available)
+_INIT_
+ All 50 instances equal to 1.
+END_DESCRIPTION
+
+Variable_price
+(no description available)
+_INIT_
+ All 100 instances equal to 0.2.
+END_DESCRIPTION
+
+Variable_backlog
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Variable_UnitSales
+(no description available)
+_INIT_
+ All 100 instances equal to 0.
+END_DESCRIPTION
+
+Variable_ExpectedSales
+(no description available)
+_INIT_
+ All 50 instances equal to 1.
+END_DESCRIPTION
+
+Parameter_DesiredUnusedCapacity
+(no description available)
+_INIT_
+ All 5 instances equal to 1.05.
+END_DESCRIPTION
+
+Variable_DesiredQ
+(no description available)
+_INIT_
+ All 100 instances equal to 100.
+END_DESCRIPTION
+
+Variable_markup
+(no description available)
+_INIT_
+ All 250 instances equal to 1.05.
+END_DESCRIPTION
+
+Variable_Revenues
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_backlogSales
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_numBLI
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Variable_Profit
+(no description available)
+_INIT_
+ All 100 instances equal to 1.
+END_DESCRIPTION
+
+Variable_UnitLaborCost
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Variable_InvestmentDecision
+Place on order of K if you need it and did not place an order as yet
+
+'InvestmentDecision' appears in the equation for: WagePrem.
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_Waiting
+'Waiting' appears in the equation for: InvestmentDecision, KProductionFlow.
+_INIT_
+
+END_DESCRIPTION
+
+Variable_UnitDemand
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Variable_KapitalNeed
+Decide whether to order new capital.
+
+'KapitalNeed' appears in the equation for: InvestmentDecision, PlaceOrder.
+_INIT_
+ All 100 instances set to integer random values drawn from a uniform in the range [20,35].
+END_DESCRIPTION
+
+Parameter_IdTech
+(no description available)
+_INIT_
+ All 100 instances equal to 1. Instances from 1 to 50 equal to 1. Instances from 51 to 100 equal to 2.
+END_DESCRIPTION
+
+Variable_MaxLaborProductivity
+(no description available)
+_INIT_
+ All 250 instances equal to 1.
+END_DESCRIPTION
+
+Parameter_CapitalDepress
+(no description available)
+_INIT_
+ All 100 instances equal to 0.001.
+END_DESCRIPTION
+
+Parameter_CapitalStock
+(no description available)
+_INIT_
+ All 50 instances equal to 1.
+END_DESCRIPTION
+
+Parameter_NumK
+(no description available)
+_INIT_
+ All 100 instances equal to 0.
+END_DESCRIPTION
+
+Parameter_app
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Variable_LaborCost
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Variable_Ms
+(no description available)
+_INIT_
+ All 100 instances equal to 0.01.
+END_DESCRIPTION
+
+Parameter_MsSector
+Market share of the firm in its sector
+_INIT_
+ All 50 instances equal to 0.07.
+END_DESCRIPTION
+
+Parameter_CapitalCapacity
+(no description available)
+_INIT_
+ All 100 instances equal to 2.
+END_DESCRIPTION
+
+Variable_LaborCapacity
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_AvWage
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_betaPrice
+(no description available)
+_INIT_
+ All 100 instances equal to 1.
+END_DESCRIPTION
+
+Parameter_betaProd
+(no description available)
+_INIT_
+ All 100 instances equal to 1.
+END_DESCRIPTION
+
+Parameter_betaTime
+(no description available)
+_INIT_
+ All 100 instances equal to 1.
+END_DESCRIPTION
+
+Parameter_aNW
+(no description available)
+_INIT_
+ All 100 instances equal to 0.9.
+END_DESCRIPTION
+
+Parameter_ConstPrice
+(no description available)
+_INIT_
+ All 100 instances equal to 1.
+END_DESCRIPTION
+
+Parameter_product
+Defines the good the firm is producing (i.e. which consmer need the good satisfies)
+_INIT_
+ All 100 instances increasing from 1 with steps 1. The value is increased every 10 instances.
+END_DESCRIPTION
+
+Variable_RdExpenditure
+Amount of resources spent in product R&D (and not devoted to dividends)
+_INIT_
+
+END_DESCRIPTION
+
+Variable_ProdInno
+Actual change in the quality characteristic, and definition of the prototipe
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_ProdShockP
+Determines the variance of the change in the quality of the product
+_INIT_
+ All 100 instances equal to 0.01.
+END_DESCRIPTION
+
+Variable_MovAvExpSales
+Moving average of the expected sales
+_INIT_
+ All 5 instances equal to 1.
+END_DESCRIPTION
+
+Parameter_aExpSales
+Smoothing factor for the moving average of expected sales
+_INIT_
+ All 5 instances equal to 0.05.
+END_DESCRIPTION
+
+Parameter_tInno
+Indicates how many periods before an innvoation had been introduced
+_INIT_
+ All 5 instances equal to 0.
+END_DESCRIPTION
+
+Variable_MovAvProfit
+Moving average of the firm's profits
+_INIT_
+ All 5 instances equal to 1.
+END_DESCRIPTION
+
+Parameter_aProfit
+Decay parameter of the moving average
+_INIT_
+ All 5 instances equal to 0.05.
+END_DESCRIPTION
+
+Variable_ExpectedProfit
+Profits perceied by looking at expected sales, and not unit sales
+_INIT_
+
+END_DESCRIPTION
+
+Variable_ExpectedProfit2
+Perceived profits as a difference between desired quantity and costs
+_INIT_
+
+END_DESCRIPTION
+
+Variable_ExpectedProfit3
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_MonetarySalesL
+Monetary sales in t-1 (computed before setting to 0 mon sales in t=0)
+_INIT_
+ All 5 instances equal to 4.
+END_DESCRIPTION
+
+Parameter_zInno
+Pobability to introduce a prototipe when sales are reducing
+_INIT_
+ All 100 instances equal to 0.05.
+END_DESCRIPTION
+
+Parameter_roPremia
+(no description available)
+_INIT_
+ All 100 instances equal to 0.15.
+END_DESCRIPTION
+
+Parameter_roRD
+(no description available)
+_INIT_
+ All 100 instances equal to 0.2.
+END_DESCRIPTION
+
+Variable_Health
+(no description available)
+_INIT_
+ All 100 instances equal to 1.
+END_DESCRIPTION
+
+Parameter_aHealth
+(no description available)
+_INIT_
+ All 100 instances equal to 0.9.
+END_DESCRIPTION
+
+Variable_smoothMonSales
+(no description available)
+_INIT_
+ All 100 instances equal to 100.
+END_DESCRIPTION
+
+Parameter_aMonSales
+Smoothing parameter of the moving average
+_INIT_
+ All 100 instances equal to 0.9.
+END_DESCRIPTION
+
+Variable_Visibility
+(no description available)
+_INIT_
+ All 100 instances equal to 1.
+END_DESCRIPTION
+
+Variable_Age
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_RationingRatioFirm
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Variable_WagePrem
+(no description available)
+_INIT_
+ All 4 instances equal to 0.
+END_DESCRIPTION
+
+Variable_SmoothProfit
+(no description available)
+_INIT_
+ All 100 instances equal to -1.
+END_DESCRIPTION
+
+Parameter_LaborForce
+(no description available)
+_INIT_
+ All 100 instances equal to 0.
+END_DESCRIPTION
+
+Parameter_RatioVacancies
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_Vacancies
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Object_PNeed
+(no description available )
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_IdPNeed
+(no description available)
+_INIT_
+ All 20 instances equal to 0.
+END_DESCRIPTION
+
+Object_Ch
+(no description available )
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_IdCh
+(no description available)
+_INIT_
+ All 2500 instances increasing from 1 with steps 1 re-starting for each group of Objects.
+END_DESCRIPTION
+
+Variable_x
+(no description available)
+_INIT_
+ All 20 instances equal to 0.2. Instances from 2 to 1000 equal to 0.
+END_DESCRIPTION
+
+Parameter_obs_x
+(no description available)
+_INIT_
+ All 20 instances equal to 0.
+END_DESCRIPTION
+
+Object_Capital
+(no description available )
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_IncProductivity
+(no description available)
+_INIT_
+ All 250 instances equal to 1.
+END_DESCRIPTION
+
+Parameter_IncSkillBiais
+(no description available)
+_INIT_
+ All 100 instances equal to 0.5.
+END_DESCRIPTION
+
+Parameter_K
+(no description available)
+_INIT_
+ All 100 instances equal to 10.
+END_DESCRIPTION
+
+Variable_KAge
+(no description available)
+_INIT_
+ All 100 instances equal to -1.
+END_DESCRIPTION
+
+Parameter_KExpenditures
+(no description available)
+_INIT_
+ All 100 instances equal to 0.
+END_DESCRIPTION
+
+Variable_MaxKQ
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Variable_IncLearningK
+(no description available)
+_INIT_
+ All 100 instances equal to 1.
+END_DESCRIPTION
+
+Object_Labor
+(no description available )
+_INIT_
+
+END_DESCRIPTION
+
+Variable_NumWorkers
+(no description available)
+_INIT_
+ All 200 instances equal to 1.
+END_DESCRIPTION
+
+Variable_wage
+(no description available)
+_INIT_
+ All 200 instances equal to 1.3. Instances from 2 to 10000 equal to 0. Instances from 2 to 10000 equal to 1.69. Instances from 2 to 10000 equal to 1.95. Instances from 2 to 10000 equal to 1.69.
+END_DESCRIPTION
+
+Parameter_wagecoeff
+(no description available)
+_INIT_
+ All 200 instances equal to 1.3.
+END_DESCRIPTION
+
+Parameter_IdLabor
+(no description available)
+_INIT_
+ All 200 instances increasing from 1 with steps 1 re-starting for each group of Objects.
+END_DESCRIPTION
+
+Parameter_nu
+(no description available)
+_INIT_
+ All 200 instances equal to 3.
+END_DESCRIPTION
+
+Parameter_Premia
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Object_blItem
+(no description available )
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_blQ
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_blPrice
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Object_BankF
+(no description available )
+_INIT_
+
+END_DESCRIPTION
+
+Variable_BalanceF
+(no description available)
+_INIT_
+ All 100 instances equal to 100.
+END_DESCRIPTION
+
+Parameter_DebtF
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Variable_KPresentValue
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Variable_NetWorth
+(no description available)
+_INIT_
+ All 100 instances equal to 1.
+END_DESCRIPTION
+
+Variable_BacklogValue
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Variable_sBalanceF
+(no description available)
+_INIT_
+ All 100 instances equal to 1.
+END_DESCRIPTION
+
+Parameter_RRoK
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Object_Demand
+(no description available )
+_INIT_
+
+END_DESCRIPTION
+
+Variable_IncomeDistribution
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_HerfTotalIncome
+(no description available)
+_INIT_
+ All 1 instances equal to 0.
+END_DESCRIPTION
+
+Parameter_HerfWageIncome
+(no description available)
+_INIT_
+ All 1 instances equal to 0.
+END_DESCRIPTION
+
+Parameter_HerfNonWageIncome
+(no description available)
+_INIT_
+ All 1 instances equal to 0.
+END_DESCRIPTION
+
+Parameter_eta
+Relation between changes in the expenditure shares
+_INIT_
+ All 1 instances equal to 0.5.
+END_DESCRIPTION
+
+Variable_PayTime
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Variable_TotWage
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Variable_TotPremia
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Variable_TotIncome
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Variable_TotIndividuals
+Total number of consumers
+_INIT_
+
+END_DESCRIPTION
+
+Variable_Atkinson
+Atkinson index of inequality for income in period t-1
+_INIT_
+
+END_DESCRIPTION
+
+Variable_AvIncome
+Average income across classes in time t-1
+_INIT_
+
+END_DESCRIPTION
+
+Variable_TotIncomeCapita
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_InterestRate
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_ExIncome
+Exogenous income
+_INIT_
+ All 5 instances increasing from 100 with steps 100. The value is increased every 1 instances.
+END_DESCRIPTION
+
+Parameter_ShareSavingsConsumed
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_SRMultiplier
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_AtkinsonClass
+(no description available)
+_INIT_
+ All 1 instances equal to 0.
+END_DESCRIPTION
+
+Variable_TotConsumption
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Variable_MargPropConsume
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_WageIncomeRatio
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_PremiaIncomeRatio
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Variable_TopBotInc
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Variable_TopBotEarn
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Variable_GlobalIncome
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Variable_DecilesRatios
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_IncomeTop1
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_IncomeTop10
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_IncomeBottom90
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_Ratio1-90
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_Ratio10-90
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_ShareIncomeTop01
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_ShareIncomeTop10
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_ShareIncomeBottom90
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Object_Class
+(no description available )
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_NumClass
+(no description available)
+_INIT_
+ All 3 instances increasing from 0 with steps 1. The value is increased every 1 instances.
+END_DESCRIPTION
+
+Variable_Expenditure
+(no description available)
+_INIT_
+ All 3 instances equal to 1.
+END_DESCRIPTION
+
+Variable_ShareWageIncome
+(no description available)
+_INIT_
+ All 3 instances equal to 0.33.
+END_DESCRIPTION
+
+Parameter_aEx
+(no description available)
+_INIT_
+ All 3 instances equal to 0.8.
+END_DESCRIPTION
+
+Variable_SharePremiaIncome
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_Lorenz
+Data to anlayse fot he Lorent curve
+_INIT_
+ All 3 instances equal to 0.
+END_DESCRIPTION
+
+Variable_ShareIncome
+Share of income for each individual
+
+'ShareIncome' appears in the equation for: NumWorkers, KNbrWorkers, Andre, TotIndividuals, AvIncome, Atkinson, Gini.
+_INIT_
+ All 3 instances equal to 0.33.
+END_DESCRIPTION
+
+Parameter_Individuals
+(no description available)
+_INIT_
+ All 3 instances equal to 0.
+END_DESCRIPTION
+
+Parameter_LorenzInd
+(no description available)
+_INIT_
+ All 3 instances equal to 0.
+END_DESCRIPTION
+
+Function_ComputeShare
+Function called to initialise the shares of the different needs
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_NoConsumption
+Amount of income not consumed due to good not available
+_INIT_
+ All 3 instances equal to 0.
+END_DESCRIPTION
+
+Variable_TotIterations
+Total number of iterations (used to compute the consumption share of each need - i.e. the number of iterations for each need)
+_INIT_
+ All 1 instances equal to 100.
+END_DESCRIPTION
+
+Variable_ShareExIncome
+Class share of exogenous income
+_INIT_
+ All 3 instances equal to 0.33.
+END_DESCRIPTION
+
+Variable_Income
+(no description available)
+_INIT_
+ All 3 instances equal to 100.
+END_DESCRIPTION
+
+Parameter_PremiaIncome
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_WageIncome
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_tempWage
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Variable_IncomeCapita
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Variable_Consumption
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_SavingRate
+(no description available)
+_INIT_
+ All 3 instances equal to 0.15.
+END_DESCRIPTION
+
+Variable_ShareIndividuals
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Variable_shareConsumption
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Object_Need
+(no description available )
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_IdNeed
+(no description available)
+_INIT_
+ All 30 instances increasing from 1 with steps 1 re-starting for each group of Objects.
+END_DESCRIPTION
+
+Parameter_Share
+(no description available)
+_INIT_
+ Instances from 3 to 6 equal to 0.1. Instances from 1 to 10 equal to 0.2. Instances from 1 to 10 equal to 0.1.
+END_DESCRIPTION
+
+Parameter_NumIterations
+(no description available)
+_INIT_
+ All 3 instances equal to 50. Instances from 1 to 10 equal to 20. Instances from 1 to 10 equal to 10.
+END_DESCRIPTION
+
+Function_ExpShare
+Function that computes the share of each need with respect to the share in the same need in the previous class
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_endExpShare
+Asymptotic share towards which the share tends as the class becomes richer
+_INIT_
+ Instances from 3 to 6 equal to 0.1. Instances from 4 to 6 equal to 0.9. Instances from 1 to 10 equal to 0.2. Instances from 11 to 30 equal to 0.0142892. Instances from 12 to 30 equal to 0.0295163. Instances from 13 to 30 equal to 0.0320707. Instances from 14 to 30 equal to 0.0391915. Instances from 15 to 30 equal to 0.0676229. Instances from 16 to 30 equal to 0.0980039. Instances from 17 to 30 equal to 0.126654. Instances from 18 to 30 equal to 0.151125. Instances from 19 to 30 equal to 0.171327. Instances from 20 to 30 equal to 0.2702. Instances from 1 to 10 equal to 0.1.
+END_DESCRIPTION
+
+Parameter_ProdExists
+(no description available)
+_INIT_
+ All 9 instances equal to 1.
+END_DESCRIPTION
+
+Parameter_TempIterations
+(no description available)
+_INIT_
+ All 9 instances equal to 0.
+END_DESCRIPTION
+
+Object_DCh
+(no description available )
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_IdDCh
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_tau
+(no description available)
+_INIT_
+ All 6 instances equal to 0.95.
+END_DESCRIPTION
+
+Parameter_Delta
+'Delta' appears in the equation for: TTB_multiplWinner, MinimumPriceSet, MinimumInit.
+_INIT_
+ All 6 instances equal to 0.05.
+END_DESCRIPTION
+
+Parameter_Minimum
+(no description available)
+_INIT_
+ All 75 instances equal to 98.
+END_DESCRIPTION
+
+Parameter_temp
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_NegativeQuality
+(no description available)
+_INIT_
+ All 6 instances equal to -1.
+END_DESCRIPTION
+
+Object_BankC
+(no description available )
+_INIT_
+
+END_DESCRIPTION
+
+Variable_BalanceC
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Variable_DividendsC
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Variable_NumberUnits
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_ShareUnits
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Variable_LiquidityRentsC
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Object_Machinery
+(no description available )
+_INIT_
+
+END_DESCRIPTION
+
+Function_PlaceOrder
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_AvKPrice
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_AvCurrProd
+(no description available)
+_INIT_
+ All 1 instances equal to 10.
+END_DESCRIPTION
+
+Parameter_AvWaitTime
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_DiscountUsedK
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_PrudenceLending
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_KEmploymentShare
+(no description available)
+_INIT_
+ All 1 instances equal to 0.
+END_DESCRIPTION
+
+Parameter_KEmployment
+(no description available)
+_INIT_
+ All 1 instances equal to 0.
+END_DESCRIPTION
+
+Parameter_KNomGDPShare
+(no description available)
+_INIT_
+ All 1 instances equal to 0.
+END_DESCRIPTION
+
+Parameter_KOutputShare
+(no description available)
+_INIT_
+ All 1 instances equal to 0.
+END_DESCRIPTION
+
+Object_KFirm
+(no description available )
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_IdKTech
+(no description available)
+_INIT_
+ All 10 instances equal to 1. Instances from 6 to 10 equal to 2.
+END_DESCRIPTION
+
+Variable_KQ
+(no description available)
+_INIT_
+ All 10 instances equal to 10.
+END_DESCRIPTION
+
+Parameter_NumOrders
+(no description available)
+_INIT_
+ All 2 instances equal to 0.
+END_DESCRIPTION
+
+Parameter_kapp
+(no description available)
+_INIT_
+ All 2 instances equal to 0.
+END_DESCRIPTION
+
+Variable_KProductionFlow
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Variable_KPrice
+(no description available)
+_INIT_
+ All 4 instances equal to 1.
+END_DESCRIPTION
+
+Parameter_z
+(no description available)
+_INIT_
+ All 10 instances equal to 0.01.
+END_DESCRIPTION
+
+Parameter_ProductivityShock
+(no description available)
+_INIT_
+ All 10 instances equal to 0.01.
+END_DESCRIPTION
+
+Parameter_SkillBiaisShock
+(no description available)
+_INIT_
+ All 4 instances equal to 0.01.
+END_DESCRIPTION
+
+Variable_KProfit
+(no description available)
+_INIT_
+ All 10 instances equal to 1000.
+END_DESCRIPTION
+
+Parameter_EngineersHiring
+(no description available)
+_INIT_
+ All 10 instances equal to 0.05.
+END_DESCRIPTION
+
+Parameter_Kmarkup
+(no description available)
+_INIT_
+ All 10 instances equal to 0.5.
+END_DESCRIPTION
+
+Parameter_KCumProfit
+(no description available)
+_INIT_
+ All 4 instances equal to 2.
+END_DESCRIPTION
+
+Parameter_EngineersShare
+(no description available)
+_INIT_
+ All 10 instances equal to 0.1.
+END_DESCRIPTION
+
+Parameter_kselect
+(no description available)
+_INIT_
+ All 10 instances equal to 1.
+END_DESCRIPTION
+
+Parameter_WaitTime
+(no description available)
+_INIT_
+ All 10 instances equal to 1.
+END_DESCRIPTION
+
+Parameter_AvKWage
+(no description available)
+_INIT_
+ All 4 instances equal to 0.
+END_DESCRIPTION
+
+Parameter_KConstPrice
+(no description available)
+_INIT_
+ All 10 instances equal to 1.
+END_DESCRIPTION
+
+Variable_KWagePrem
+(no description available)
+_INIT_
+ All 8 instances equal to 0.
+END_DESCRIPTION
+
+Variable_LaborCostK
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_KVacancies
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_KRatioVacancies
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Object_KLabor
+(no description available )
+_INIT_
+
+END_DESCRIPTION
+
+Variable_KNbrWorkers
+(no description available)
+_INIT_
+ All 20 instances equal to 1.
+END_DESCRIPTION
+
+Variable_KWage
+(no description available)
+_INIT_
+ All 20 instances equal to 1.
+END_DESCRIPTION
+
+Parameter_KWagecoeff
+(no description available)
+_INIT_
+ All 20 instances equal to 1.
+END_DESCRIPTION
+
+Parameter_KaNW
+(no description available)
+_INIT_
+ All 20 instances equal to 0.6.
+END_DESCRIPTION
+
+Parameter_KDesiredUnusedCapacity
+(no description available)
+_INIT_
+ All 10 instances equal to 1.2.
+END_DESCRIPTION
+
+Parameter_KLaborProductivity
+(no description available)
+_INIT_
+ All 10 instances equal to 1.
+END_DESCRIPTION
+
+Parameter_IdKLabor
+(no description available)
+_INIT_
+ All 20 instances increasing from 1 with steps 1 re-starting for each group of Objects.
+END_DESCRIPTION
+
+Parameter_knu
+(no description available)
+_INIT_
+ All 20 instances equal to 5.
+END_DESCRIPTION
+
+Parameter_KPremia
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Object_KEngineers
+(no description available )
+_INIT_
+
+END_DESCRIPTION
+
+Variable_KNbrEngineers
+(no description available)
+_INIT_
+ All 10 instances equal to 0.
+END_DESCRIPTION
+
+Variable_KWageEngineers
+(no description available)
+_INIT_
+ All 10 instances equal to 0.
+END_DESCRIPTION
+
+Parameter_KEWagecoeff
+(no description available)
+_INIT_
+ All 10 instances equal to 1.5.
+END_DESCRIPTION
+
+Object_KCapital
+(no description available )
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_CurrentProductivity
+(no description available)
+_INIT_
+ All 25 instances equal to 1.
+END_DESCRIPTION
+
+Parameter_CurrentSkillBiais
+(no description available)
+_INIT_
+ All 10 instances equal to 0.6.
+END_DESCRIPTION
+
+Variable_KInnovation
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Object_Order
+(no description available )
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_KAmount
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_KCompletion
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_TimeWaited
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_Kproductivity
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_KSkillBiais
+(no description available)
+_INIT_
+ All 10 instances equal to 0.
+END_DESCRIPTION
+
+Parameter_KP
+(no description available)
+_INIT_
+ All 10 instances equal to 0.
+END_DESCRIPTION
+
+Object_BankK
+(no description available )
+_INIT_
+
+END_DESCRIPTION
+
+Variable_BalanceK
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_KRevenues
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_DebtK
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Object_Sectors
+(no description available )
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_IdGood
+(no description available)
+_INIT_
+ All 10 instances increasing from 1 with steps 1. The value is increased every 1 instances.
+END_DESCRIPTION
+
+Parameter_NFirmsS
+Number of firms in a sector
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_SInvHerf
+Herfindhal index for each sector
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_TotSalesS
+Total sales in the sector
+_INIT_
+ All 3 instances equal to 5. Instances from 3 to 10 equal to 0.
+END_DESCRIPTION
+
+Parameter_AvxS
+Averge quality of the good within a sector, weighted by firms market share
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_AvpS
+Averge price of the good within a sector, weighted by firms market share
+_INIT_
+
+END_DESCRIPTION
+
+Variable_FrontierX
+(no description available)
+_INIT_
+ All 10 instances equal to 100.
+END_DESCRIPTION
+
+Parameter_maxXS
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_aFrontierX
+(no description available)
+_INIT_
+ All 10 instances equal to 0.9.
+END_DESCRIPTION
+
+Parameter_probEntry
+(no description available)
+_INIT_
+ All 10 instances equal to 0.08.
+END_DESCRIPTION
+
+Parameter_minHealth
+(no description available)
+_INIT_
+ All 10 instances equal to 0.05.
+END_DESCRIPTION
+
+Variable_Demography
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_SUnitSales
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_SQ
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_SRevenues
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_SProfits
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_SNumFirms
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_SMonetarySales
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_SAvHealth
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_SAvBacklog
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_SAvStock
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_numExit
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_AvAgeDeath
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_SKProductivity
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_SULC
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_Sapp
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_SnumBLI
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_SNetWorth
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_SAvAge
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_SectEmploymentShare
+(no description available)
+_INIT_
+ All 10 instances equal to 0.
+END_DESCRIPTION
+
+Variable_SectEmployment
+(no description available)
+_INIT_
+ All 10 instances equal to 0.
+END_DESCRIPTION
+
+Parameter_SectSales
+(no description available)
+_INIT_
+ All 10 instances equal to 0.
+END_DESCRIPTION
+
+Parameter_SectNomGDPShare
+(no description available)
+_INIT_
+ All 10 instances equal to 0.
+END_DESCRIPTION
+
+Parameter_SectOutputShare
+(no description available)
+_INIT_
+ All 10 instances equal to 0.
+END_DESCRIPTION
+
+Parameter_SectSalesShare
+(no description available)
+_INIT_
+ All 10 instances equal to 0.
+END_DESCRIPTION
+
+Parameter_SectMechanisation
+(no description available)
+_INIT_
+ All 10 instances equal to 0.
+END_DESCRIPTION
+
+Object_sFirm
+(no description available )
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_IdsFirm
+(no description available)
+_INIT_
+ All 10 instances equal to -1.
+END_DESCRIPTION
+
+Object_Bank
+(no description available )
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_TotalSavings
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_TotalWithdrawals
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_TotalCapital
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_TotalDividends
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_TotalLosses
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Variable_UnitValue
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Variable_TotalValue
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Variable_Liquidity
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Variable_OutgoingLiquidity
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_CapitalDemand
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_CapitalDestroyed
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Variable_TotalNumberUnits
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Variable_NewUnits
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Variable_SoldUnits
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_ShareCapital
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_InterestRateLiquidity
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+
+DOCUOBSERVE
+Root
+Country
+Trade
+MinWage
+TTB_multiplWinner
+TotUSales
+AvPrice
+TotVacancies
+JobLoss
+IncrAvPrice
+aAvPrice
+Supply
+aES
+CapitalIntens
+Firm
+MonetarySales
+DesiredStocks
+Q
+price
+UnitSales
+DesiredUnusedCapacity
+DesiredQ
+markup
+InvestmentDecision
+NumK
+Ms
+betaProd
+Vacancies
+PNeed
+Ch
+x
+obs_x
+IncSkillBiais
+K
+KExpenditures
+MaxKQ
+NumWorkers
+wage
+NumClass
+SharePremiaIncome
+WageIncome
+Need
+IdNeed
+Share
+NumIterations
+DCh
+IdDCh
+Delta
+Minimum
+temp
+NegativeQuality
+Machinery
+PlaceOrder
+KFirm
+IdKTech
+KQ
+kapp
+KProductionFlow
+KPrice
+z
+ProductivityShock
+SkillBiaisShock
+KProfit
+EngineersHiring
+Kmarkup
+KLabor
+KWage
+KWagecoeff
+KaNW
+KDesiredUnusedCapacity
+KLaborProductivity
+KEngineers
+KNbrEngineers
+KWageEngineers
+KEWagecoeff
+KCapital
+CurrentProductivity
+CurrentSkillBiais
+KInnovation
+Order
+KAmount
+KCompletion
+TimeWaited
+Kproductivity
+
+END_DOCUOBSERVE
+
+
+DOCUINITIAL
+Root
+Country
+MinWage
+AvPrice
+TotHired
+beta
+JobLoss
+aMWA
+aMWP
+Supply
+aES
+CapitalIntens
+IdFirm
+Stocks
+MonetarySales
+DesiredStocks
+Q
+price
+backlog
+ExpectedSales
+DesiredUnusedCapacity
+Profit
+Waiting
+MaxLaborProductivity
+CapitalDepress
+NumK
+app
+Ms
+AvWage
+aNW
+PNeed
+IdPNeed
+Ch
+IdCh
+x
+IncProductivity
+IncSkillBiais
+KAge
+KExpenditures
+Labor
+NumWorkers
+wage
+wagecoeff
+Demand
+Class
+NumClass
+Expenditure
+aEx
+SharePremiaIncome
+WageIncome
+Need
+IdNeed
+Share
+NumIterations
+DCh
+tau
+Delta
+Minimum
+temp
+NegativeQuality
+KFirm
+kapp
+KPrice
+ProductivityShock
+SkillBiaisShock
+EngineersHiring
+Kmarkup
+KCumProfit
+WaitTime
+KLabor
+KNbrWorkers
+KWage
+KWagecoeff
+KaNW
+KDesiredUnusedCapacity
+KLaborProductivity
+KEngineers
+KNbrEngineers
+KWageEngineers
+KEWagecoeff
+KCapital
+CurrentProductivity
+CurrentSkillBiais
+Order
+KAmount
+KCompletion
+TimeWaited
+Kproductivity
+KSkillBiais
+
+END_DOCUINITIAL
+
+
+EQ_FILE
+#include "fun_head.h"
+
+MODELBEGIN
+
+
+
+
+
+
+
+
+
+
+
+MODELEND
+
+
+
+
+void close_sim(void)
+{
+
+}
+
+
+
+END_EQ_FILE
