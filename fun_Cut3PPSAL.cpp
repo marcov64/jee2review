@@ -55,7 +55,7 @@ v[1]=VS(c,"IdGood");
 cur1=ADDOBJ("Firm");
 cur1->hook=c;
 WRITELS(cur1,"Age",0, t);
-WRITELS(cur1,"Visibility",0.01, t);
+WRITELS(cur1,"Visibility",0.1, t);
 WRITES(cur1,"IdFirm",v[20]=V("CounterIdFirm"));
 cur5=ADDOBJS(c,"sFirm");
 
@@ -162,9 +162,11 @@ CYCLE_SAFE(cur, "Firm")
     v[7]=VS(cur,"NetWorth");
     v[17]=VS(cur,"RRoK");
 //    if(v[3]<v[2])
-//    if(v[7]<0)
+//     if(v[7]<0)
     if(v[17]<0.00 && VS(cur->hook->up,"NFirmsS")>1)
-     {v[5]=VS(cur,"Age");
+     {
+      INCRS(cur->hook->up,"NFirmsS",-1);
+      v[5]=VS(cur,"Age");
       if(V("ExitFlag")==1 )
         INTERACTS(cur,"Dying", v[7]);
       INCRS(cur->hook->up,"AvAgeDeath",v[5]);
@@ -173,6 +175,7 @@ CYCLE_SAFE(cur, "Firm")
       DELETE(cur->hook); 
       DELETE(cur);
       v[4]++;
+      
      }
    }
  }
@@ -189,9 +192,9 @@ cur=SEARCHS(p->up,"Supply");
 
 VS(cur,"Exit");
 v[3]=V("numExit");
-v[5]=INCR("NFirmsS",-v[3]);
-if(v[5]<=0)
- INTERACT("Removed last firm in sector. Likely crash will follow", v[3]);
+//v[5]=INCR("NFirmsS",-v[3]);
+//if(v[5]<=0)
+ //INTERACT("Removed last firm in sector. Likely crash will follow", v[3]);
 if(v[3]>0)
  MULT("AvAgeDeath",1/v[3]);
 
@@ -261,7 +264,7 @@ EQUATION("Visibility")
 /*
 Comment
 */
-END_EQUATION(1);
+//END_EQUATION(1);
 v[0]=V("backlog");
 v[1]=CURRENT;
 v[2]=V("MonetarySales");
@@ -270,7 +273,7 @@ if(v[2]<1)
 
 v[3]=(v[2]-v[0])/v[2];
 
-v[4]=max(v[3],0.1);
+v[4]=max(v[3],0.001);
 
 v[5]=v[1]*0.9+0.1*v[4];
 //v[5]=CURRENT*0.9+0.1;
@@ -555,11 +558,21 @@ CYCLE(cur, "Class")
    
       for(v[8]=0; v[8]<v[9]+v[18]; v[8]++)
         V_CHEAT("TTB_multiplWinner", cur1);
+        
      }
    }
  }
+
+v[0]=V("RedistributeSales"); 
 cur=SEARCH("Bank");
 RESULT( 1)
+
+EQUATION("RedistributeSales")
+/*
+Comment
+*/
+
+RESULT(1 )
 
 EQUATION("UnitDemand")
 /*
