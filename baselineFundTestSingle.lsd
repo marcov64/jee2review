@@ -371,6 +371,10 @@ Label Root
 				Label sFirm
 				{
 					Param: IdsFirm
+					Param: app1
+					Param: app2
+					Param: app3
+					Param: app4
 
 				}
 
@@ -410,6 +414,7 @@ Label Root
 				Param: SectOutputShare
 				Param: SectSalesShare
 				Param: SectMechanisation
+				Var: RedistributeSales
 
 			}
 
@@ -533,7 +538,6 @@ Label Root
 			Param: maxMinWage
 			Param: elasMinWage
 			Var: FinancialTrading
-			Var: RedistributeSales
 
 		}
 
@@ -653,7 +657,6 @@ Param: minMinWage 0 n + n n	0
 Param: maxMinWage 0 n + n n	1
 Param: elasMinWage 0 n + n n	0.01
 Var: FinancialTrading 0 n + n n
-Var: RedistributeSales 0 n + d n
 
 Object: Supply C	1
 Param: aES 0 n + n n	0.9
@@ -969,9 +972,14 @@ Param: SectNomGDPShare 0 s + n n	0	0	0	0	0	0	0	0	0	0
 Param: SectOutputShare 0 s + n n	0	0	0	0	0	0	0	0	0	0
 Param: SectSalesShare 0 s + n n	0	0	0	0	0	0	0	0	0	0
 Param: SectMechanisation 0 s + n n	0	0	0	0	0	0	0	0	0	0
+Var: RedistributeSales 0 n + d n
 
 Object: sFirm C	1	1	1	1	1	1	1	1	1	1
 Param: IdsFirm 0 n + n n	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1
+Param: app1 0 n + n n	0	0	0	0	0	0	0	0	0	0
+Param: app2 0 n + n n	0	0	0	0	0	0	0	0	0	0
+Param: app3 0 n + n n	0	0	0	0	0	0	0	0	0	0
+Param: app4 0 n + n n	0	0	0	0	0	0	0	0	0	0
 
 Object: Bank C	1
 Param: TotalSavings 1 s + n n	0
@@ -1047,10 +1055,8 @@ END_DESCRIPTION
 
 Variable_MinWage
 (no description available)
-
 _INIT_
  All 1 instances equal to 1.
-
 END_DESCRIPTION
 
 Variable_AggProductivity
@@ -1616,11 +1622,6 @@ END_DESCRIPTION
 Variable_FinancialTrading
 (no description available)
 _INIT_
-
-END_DESCRIPTION
-
-Variable_RedistributeSales
-(no description available)
 
 END_DESCRIPTION
 
@@ -3394,6 +3395,12 @@ _INIT_
  All 10 instances equal to 0.
 END_DESCRIPTION
 
+Variable_RedistributeSales
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
 Object_sFirm
 (no description available )
 _INIT_
@@ -3404,6 +3411,30 @@ Parameter_IdsFirm
 (no description available)
 _INIT_
  All 10 instances equal to -1.
+END_DESCRIPTION
+
+Parameter_app1
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_app2
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_app3
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_app4
+(no description available)
+_INIT_
+
 END_DESCRIPTION
 
 Object_Bank

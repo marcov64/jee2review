@@ -563,16 +563,87 @@ CYCLE(cur, "Class")
    }
  }
 
-v[0]=V("RedistributeSales"); 
+CYCLE(cur, "Sectors")
+ {
+ VS(cur,"RedistributeSales");   
+ }
+
+
 cur=SEARCH("Bank");
 RESULT( 1)
 
 EQUATION("RedistributeSales")
 /*
-Comment
+This routine redistributes sales in order to avoid excessive backlogs. The logic is that customers choosing firms that cannot deliver will redirect their expenses to firms with available capacity.
+
+The routine collects total capacity in excess of demand and demand in excess of capacity. The latter is redistributed in proportion to the former. 
+
+In case total capacity of the industry is not sufficient to meet the demand, the residual is distributed in proportion to sales
 */
 
-RESULT(1 )
+if(VS(p->up,"Redistribute")==0)
+ END_EQUATION(0);
+
+v[0]=v[1]=v[2]=v[3]=v[8]=v[10]=v[20]=v[21]=v[32]=0;
+
+CYCLE(cur, "sFirm")
+ {
+  v[4]=VS(cur->hook,"MonetarySales");
+  v[8]+=v[4]; //total sales
+  v[5]=VLS(cur->hook,"price",1);
+  v[6]=v[4]/v[5]; //unit sold
+  v[7]=VLS(cur->hook,"Q",1);
+  if(v[6]>v[7])
+   {//insufficient capacity
+    v[0]+=v[4]-v[7]*v[5]; //excess sales over production
+    v[20]+=v[7]*v[5];  //sales at full capacity
+    WRITES(cur,"app3",0);
+    WRITES(cur,"app4",v[7]*v[5]);
+   }
+  else
+   {//sufficient capacity
+    v[1]+=v[4]; //fully served sales
+    v[2]+=v[7]*v[5]-v[4];//excess capacity available to serve extra customers
+    v[21]+=VLS(cur->hook,"Q",1);
+    v[3]++;
+    WRITES(cur,"app3",1);
+    WRITES(cur,"app4",v[7]*v[5]);
+   } 
+ }
+if(v[3]==0)
+ END_EQUATION(-1);
+v[9]=max(0,v[0]-v[2]); //over sales
+v[13]=v[0]-v[9];
+CYCLE(cur, "sFirm")
+ {
+  v[4]=VS(cur->hook,"MonetarySales");
+  v[5]=VLS(cur->hook,"price",1);
+  v[6]=v[4]/v[5]; //unit sold
+  v[7]=VLS(cur->hook,"Q",1);
+  if(v[6]>v[7])
+   {//oversold
+    v[11]=v[7]*v[5];//maximum sales
+    WRITES(cur,"app1",v[11]);
+    v[12]=v[9]*v[4]/v[8];
+    WRITES(cur,"app2",v[12]);
+   }
+  else
+   {//undersold
+    v[14]=v[7]*v[5]-v[4];
+    if(v[2]>0)
+      v[11]=v[4]+v[13]*v[14]/v[2];     
+    else
+      v[11]=v[4]+v[13]*VLS(cur->hook,"Q",1)/v[21];
+    WRITES(cur,"app1",v[11]);
+    v[12]=v[9]*v[4]/v[8];
+    WRITES(cur,"app2",v[12]);    
+   } 
+  v[10]+=v[11]+v[12]; 
+  v[32]+=v[12];
+  WRITES(cur->hook,"MonetarySales",v[11]+v[12]);
+ }
+
+RESULT((v[8]-v[10]) )
 
 EQUATION("UnitDemand")
 /*
