@@ -146,13 +146,15 @@ Remove firms with too poor Health
 
 V("ClearExitRecord");
 v[4]=v[70]=0;
+v[18]=V("minAgeExit");
+v[19]=V("minRRoKExit");
 CYCLE_SAFE(cur, "Firm")
  {
 
   v[6]=VS(cur,"Waiting");
   v[16]=VS(cur,"Age");
 
-  if(v[6]==0 && v[16]>10) //don't kill firms waiting for a capital good to be delivered.
+  if(v[6]==0 && v[16]>v[18]) //don't kill firms waiting for a capital good to be delivered.
    {
     v[2]=VS(cur->hook,"minHealth");
     v[3]=VS(cur,"Health");
@@ -163,7 +165,7 @@ CYCLE_SAFE(cur, "Firm")
     v[17]=VS(cur,"RRoK");
 //    if(v[3]<v[2])
 //     if(v[7]<0)
-    if(v[17]<0.00 && VS(cur->hook->up,"NFirmsS")>1)
+    if(v[17]<v[19] && VS(cur->hook->up,"NFirmsS")>1)
      {
       INCRS(cur->hook->up,"NFirmsS",-1);
       v[5]=VS(cur,"Age");
@@ -433,6 +435,7 @@ After trading fix any remaining variable to compute
 */
 
 v[0]=v[1]=v[5]=v[6]=v[7]=v[8]=v[9]=v[70]=0;
+WRITE("BLrecouped",0);
 CYCLE(cur, "Supply")
  {
   CYCLES(cur, cur1, "Firm")
@@ -597,8 +600,8 @@ CYCLE(cur, "sFirm")
    {//insufficient capacity
     v[0]+=v[4]-v[7]*v[5]; //excess sales over production
     v[20]+=v[7]*v[5];  //sales at full capacity
-    WRITES(cur,"app3",0);
-    WRITES(cur,"app4",v[7]*v[5]);
+    //WRITES(cur,"app3",0);
+    //WRITES(cur,"app4",v[7]*v[5]);
    }
   else
    {//sufficient capacity
@@ -606,8 +609,8 @@ CYCLE(cur, "sFirm")
     v[2]+=v[7]*v[5]-v[4];//excess capacity available to serve extra customers
     v[21]+=VLS(cur->hook,"Q",1);
     v[3]++;
-    WRITES(cur,"app3",1);
-    WRITES(cur,"app4",v[7]*v[5]);
+    //WRITES(cur,"app3",1);
+    //WRITES(cur,"app4",v[7]*v[5]);
    } 
  }
 if(v[3]==0)
@@ -623,9 +626,9 @@ CYCLE(cur, "sFirm")
   if(v[6]>v[7])
    {//oversold
     v[11]=v[7]*v[5];//maximum sales
-    WRITES(cur,"app1",v[11]);
+    //WRITES(cur,"app1",v[11]);
     v[12]=v[9]*v[4]/v[8];
-    WRITES(cur,"app2",v[12]);
+    //WRITES(cur,"app2",v[12]);
    }
   else
    {//undersold
@@ -634,9 +637,9 @@ CYCLE(cur, "sFirm")
       v[11]=v[4]+v[13]*v[14]/v[2];     
     else
       v[11]=v[4]+v[13]*VLS(cur->hook,"Q",1)/v[21];
-    WRITES(cur,"app1",v[11]);
+    //WRITES(cur,"app1",v[11]);
     v[12]=v[9]*v[4]/v[8];
-    WRITES(cur,"app2",v[12]);    
+    //WRITES(cur,"app2",v[12]);    
    } 
   v[10]+=v[11]+v[12]; 
   v[32]+=v[12];
@@ -708,6 +711,18 @@ v[1]=V("UnitDemand");
 v[2]=VL("backlog",1);
 v[3]=VL("Stocks",1);
 WRITE("backlogSales",0);
+
+v[4]=V("BLfriction");
+v[5]=v[55]=0;
+CYCLE(cur, "blItem")
+ {
+  v[55]+=V("blQ")*(1-v[4]);
+  v[5]+=MULTS(cur,"blQ",v[4]);
+
+ }
+INCRS(p->up->up,"BLrecouped",v[55]); 
+
+v[2]=v[5];
 v[24]=v[23]=v[77]=0;
 if(v[0]>v[1]+v[3] && v[2]>0)
  {//fill some orders reducing the backlog
@@ -837,7 +852,9 @@ v[3]=V("UnitDemand");
 v[4]=VL("backlog",1);
 v[6]=V("backlog");
 v[5]=v[0]+v[1]-v[3]+v[6]-v[4];
-
+if(v[5]<0)
+ v[5]=0;
+// INTERACT("NEG. Stocks",v[3]);
 
 RESULT(v[5] )
 
@@ -1275,8 +1292,8 @@ Available liquidity
 v[0]=VL("Liquidity",1);
 v[1]=V("OutgoingLiquidity");
 v[2]=V("TotalSavings");
-
-RESULT(v[0]+v[2]-v[1])
+v[3]=V("BLrecouped");
+RESULT(v[0]+v[2]+v[3]-v[1])
 
 EQUATION("CapitalUsed")
 /*
