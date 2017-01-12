@@ -159,6 +159,7 @@ Label Root
 				Param: ExitFlag
 				Param: DivisorLiquidityFinance
 				Param: capMinWage
+				Param: BLfriction
 
 			}
 
@@ -371,6 +372,10 @@ Label Root
 				Label sFirm
 				{
 					Param: IdsFirm
+					Param: app1
+					Param: app2
+					Param: app3
+					Param: app4
 
 				}
 
@@ -410,6 +415,7 @@ Label Root
 				Param: SectOutputShare
 				Param: SectSalesShare
 				Param: SectMechanisation
+				Var: RedistributeSales
 
 			}
 
@@ -533,6 +539,10 @@ Label Root
 			Param: maxMinWage
 			Param: elasMinWage
 			Var: FinancialTrading
+			Param: Redistribute
+			Param: minAgeExit
+			Param: minRRoKExit
+			Param: BLrecouped
 
 		}
 
@@ -557,7 +567,7 @@ Object: Country C	1	1	1	1	1	1	1	1	1	1
 Var: Init 0 n + n n
 Var: Trade 0 n + d n
 Var: Production 0 n + n n
-Var: MinWage 1 s + d n	1	1	1	1	1	1	1	1	1	1
+Var: MinWage 1 s + n n	1	1	1	1	1	1	1	1	1	1
 Var: AggProductivity 1 s + n n	1	1	1	1	1	1	1	1	1	1
 Func: TTB_multiplWinner 0 n + n n
 Var: TotUSales 0 n + n n
@@ -652,6 +662,10 @@ Param: minMinWage 0 n + n n	0	0	0	0	0	0	0	0	0	0
 Param: maxMinWage 0 n + n n	1	1	1	1	1	1	1	1	1	1
 Param: elasMinWage 0 n + n n	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01	0.01
 Var: FinancialTrading 0 n + n n
+Param: Redistribute 0 n + n n	0	0	0	0	0	0	0	0	0	0
+Param: minAgeExit 0 n + n n	10	10	10	10	10	10	10	10	10	10
+Param: minRRoKExit 0 n + n n	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001	0.001
+Param: BLrecouped 0 s + n n	0	0	0	0	0	0	0	0	0	0
 
 Object: Supply C	1	1	1	1	1	1	1	1	1	1
 Param: aES 0 n + n n	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9	0.9
@@ -669,6 +683,7 @@ Param: CapitalIntens 0 n + n n	2	2	2	2	2	2	2	2	2	2
 Param: ExitFlag 0 n + n n	0	0	0	0	0	0	0	0	0	0
 Param: DivisorLiquidityFinance 0 n + n n	20	20	20	20	20	20	20	20	20	20
 Param: capMinWage 0 n + n n	0.04	0.04	0.04	0.04	0.04	0.04	0.04	0.04	0.04	0.04
+Param: BLfriction 0 n + n n	0.99	0.957778	0.925556	0.893333	0.861111	0.828889	0.796667	0.764444	0.732222	0.7
 
 Object: Firm C	100	100	100	100	100	100	100	100	100	100
 Param: IdFirm 0 n + n n	1	2	3	4	5	6	7	8	9	10	11	12	13	14	15	16	17	18	19	20	21	22	23	24	25	26	27	28	29	30	31	32	33	34	35	36	37	38	39	40	41	42	43	44	45	46	47	48	49	50	51	52	53	54	55	56	57	58	59	60	61	62	63	64	65	66	67	68	69	70	71	72	73	74	75	76	77	78	79	80	81	82	83	84	85	86	87	88	89	90	91	92	93	94	95	96	97	98	99	100	1	2	3	4	5	6	7	8	9	10	11	12	13	14	15	16	17	18	19	20	21	22	23	24	25	26	27	28	29	30	31	32	33	34	35	36	37	38	39	40	41	42	43	44	45	46	47	48	49	50	51	52	53	54	55	56	57	58	59	60	61	62	63	64	65	66	67	68	69	70	71	72	73	74	75	76	77	78	79	80	81	82	83	84	85	86	87	88	89	90	91	92	93	94	95	96	97	98	99	100	1	2	3	4	5	6	7	8	9	10	11	12	13	14	15	16	17	18	19	20	21	22	23	24	25	26	27	28	29	30	31	32	33	34	35	36	37	38	39	40	41	42	43	44	45	46	47	48	49	50	51	52	53	54	55	56	57	58	59	60	61	62	63	64	65	66	67	68	69	70	71	72	73	74	75	76	77	78	79	80	81	82	83	84	85	86	87	88	89	90	91	92	93	94	95	96	97	98	99	100	1	2	3	4	5	6	7	8	9	10	11	12	13	14	15	16	17	18	19	20	21	22	23	24	25	26	27	28	29	30	31	32	33	34	35	36	37	38	39	40	41	42	43	44	45	46	47	48	49	50	51	52	53	54	55	56	57	58	59	60	61	62	63	64	65	66	67	68	69	70	71	72	73	74	75	76	77	78	79	80	81	82	83	84	85	86	87	88	89	90	91	92	93	94	95	96	97	98	99	100	1	2	3	4	5	6	7	8	9	10	11	12	13	14	15	16	17	18	19	20	21	22	23	24	25	26	27	28	29	30	31	32	33	34	35	36	37	38	39	40	41	42	43	44	45	46	47	48	49	50	51	52	53	54	55	56	57	58	59	60	61	62	63	64	65	66	67	68	69	70	71	72	73	74	75	76	77	78	79	80	81	82	83	84	85	86	87	88	89	90	91	92	93	94	95	96	97	98	99	100	1	2	3	4	5	6	7	8	9	10	11	12	13	14	15	16	17	18	19	20	21	22	23	24	25	26	27	28	29	30	31	32	33	34	35	36	37	38	39	40	41	42	43	44	45	46	47	48	49	50	51	52	53	54	55	56	57	58	59	60	61	62	63	64	65	66	67	68	69	70	71	72	73	74	75	76	77	78	79	80	81	82	83	84	85	86	87	88	89	90	91	92	93	94	95	96	97	98	99	100	1	2	3	4	5	6	7	8	9	10	11	12	13	14	15	16	17	18	19	20	21	22	23	24	25	26	27	28	29	30	31	32	33	34	35	36	37	38	39	40	41	42	43	44	45	46	47	48	49	50	51	52	53	54	55	56	57	58	59	60	61	62	63	64	65	66	67	68	69	70	71	72	73	74	75	76	77	78	79	80	81	82	83	84	85	86	87	88	89	90	91	92	93	94	95	96	97	98	99	100	1	2	3	4	5	6	7	8	9	10	11	12	13	14	15	16	17	18	19	20	21	22	23	24	25	26	27	28	29	30	31	32	33	34	35	36	37	38	39	40	41	42	43	44	45	46	47	48	49	50	51	52	53	54	55	56	57	58	59	60	61	62	63	64	65	66	67	68	69	70	71	72	73	74	75	76	77	78	79	80	81	82	83	84	85	86	87	88	89	90	91	92	93	94	95	96	97	98	99	100	1	2	3	4	5	6	7	8	9	10	11	12	13	14	15	16	17	18	19	20	21	22	23	24	25	26	27	28	29	30	31	32	33	34	35	36	37	38	39	40	41	42	43	44	45	46	47	48	49	50	51	52	53	54	55	56	57	58	59	60	61	62	63	64	65	66	67	68	69	70	71	72	73	74	75	76	77	78	79	80	81	82	83	84	85	86	87	88	89	90	91	92	93	94	95	96	97	98	99	100	1	2	3	4	5	6	7	8	9	10	11	12	13	14	15	16	17	18	19	20	21	22	23	24	25	26	27	28	29	30	31	32	33	34	35	36	37	38	39	40	41	42	43	44	45	46	47	48	49	50	51	52	53	54	55	56	57	58	59	60	61	62	63	64	65	66	67	68	69	70	71	72	73	74	75	76	77	78	79	80	81	82	83	84	85	86	87	88	89	90	91	92	93	94	95	96	97	98	99	100
@@ -967,9 +982,14 @@ Param: SectNomGDPShare 0 s + n n	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
 Param: SectOutputShare 0 s + n n	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
 Param: SectSalesShare 0 s + n n	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
 Param: SectMechanisation 0 s + n n	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Var: RedistributeSales 0 n + n n
 
 Object: sFirm C	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
 Param: IdsFirm 0 n + n n	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1	-1
+Param: app1 0 n + n n	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Param: app2 0 n + n n	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Param: app3 0 n + n n	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Param: app4 0 n + n n	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
 
 Object: Bank C	1	1	1	1	1	1	1	1	1	1
 Param: TotalSavings 1 s + n n	0	0	0	0	0	0	0	0	0	0
@@ -987,10 +1007,10 @@ Var: TotalNumberUnits 1 s + n n	1000	1000	1000	1000	1000	1000	1000	1000	1000	100
 Var: NewUnits 0 n + n n
 Var: SoldUnits 0 n + n n
 Param: ShareCapital 0 s + n n	0	0	0	0	0	0	0	0	0	0
-Param: InterestRateLiquidity 0 n + n n	0	0.00555556	0.0111111	0.0166667	0.0222222	0.0277778	0.0333333	0.0388889	0.0444444	0.05
+Param: InterestRateLiquidity 0 n + n n	0	0	0	0	0	0	0	0	0	0
 
 SIM_NUM 1
-SEED 1
+SEED 2
 MAX_STEP 5000
 EQUATION fun_Cut3PPSAL.cpp
  MODELREPORT report_baselineFund.html
@@ -1615,6 +1635,30 @@ _INIT_
 
 END_DESCRIPTION
 
+Parameter_Redistribute
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_minAgeExit
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_minRRoKExit
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_BLrecouped
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
 Object_Supply
 (no description available )
 _INIT_
@@ -1709,6 +1753,12 @@ Parameter_capMinWage
 (no description available)
 _INIT_
 
+END_DESCRIPTION
+
+Parameter_BLfriction
+(no description available)
+_INIT_
+ All 10 instances set ranging from 0.99 to 0.7 (i.e. increments of -0.0322222).
 END_DESCRIPTION
 
 Object_Firm
@@ -3385,6 +3435,12 @@ _INIT_
  All 10 instances equal to 0.
 END_DESCRIPTION
 
+Variable_RedistributeSales
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
 Object_sFirm
 (no description available )
 _INIT_
@@ -3395,6 +3451,30 @@ Parameter_IdsFirm
 (no description available)
 _INIT_
  All 10 instances equal to -1.
+END_DESCRIPTION
+
+Parameter_app1
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_app2
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_app3
+(no description available)
+_INIT_
+
+END_DESCRIPTION
+
+Parameter_app4
+(no description available)
+_INIT_
+
 END_DESCRIPTION
 
 Object_Bank
@@ -3496,7 +3576,7 @@ END_DESCRIPTION
 Parameter_InterestRateLiquidity
 (no description available)
 _INIT_
- All 10 instances set ranging from 0 to 0.05 (i.e. increments of 0.00555556).
+
 END_DESCRIPTION
 
 

@@ -315,13 +315,22 @@ v[72]=1;
 while(v[0]==0)
 {//repeat for increasing levels of visibility as long no firms have been found
 //   CYCLE(cur, "Firm") 
+ v[50]=0;
+ CYCLES(cur9,cur8, "sFirm")
+   v[50]+=VLS(cur8->hook,"Visibility",1);  
+ CYCLES(cur9,cur8, "sFirm")
+   {
+    v[51]=VLS(cur8->hook,"Visibility",1);  
+    WRITES(cur8,"app1",v[51]/v[50]);
+   } 
+    
   CYCLES(cur9,cur8, "sFirm")
   {
    cur=cur8->hook;
    v[24]=1; //assume the option to be viable
    //cur3=SEARCH_CNDS(cur,"IdPNeed",v[30]);
    v[37]=VS(cur,"product");
-   if(v[37]!=v[30] || RND>VLS(cur,"Visibility",1)*v[72])
+   if(v[37]!=v[30] || RND>VLS(cur8,"app1",1)*v[72])
     {// if the the firm does not produce the product the consumer is looking for, exclude it from the avaialble options
      WRITES(cur,"app",0);
     }
