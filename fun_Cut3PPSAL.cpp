@@ -444,7 +444,8 @@ After trading fix any remaining variable to compute
 */
 
 v[0]=v[1]=v[5]=v[6]=v[7]=v[8]=v[9]=v[70]=0;
-WRITE("BLrecouped",0);
+CYCLE(cur, "Sectors")
+ WRITES(cur,"BLrecouped",0);
 CYCLE(cur, "Supply")
  {
   CYCLES(cur, cur1, "Firm")
@@ -492,6 +493,33 @@ CYCLE(cur, "KFirm")
 */
 WRITE("AvAge",v[5]/v[6]);
 
+V("AllocateBlRecouped");
+RESULT(1 )
+
+EQUATION("AllocateBlRecouped")
+/*
+Comment
+*/
+v[0]=v[1]=v[2]=v[3]=v[4]=v[5]=0;
+
+CYCLE(cur, "Class")
+ {
+  v[11]=VS(cur,"shareConsumption");
+  v[2]=0;
+  CYCLES(cur, cur1, "Need")
+   {
+    if(cur1->hook==NULL)
+     {
+      v[10]=VS(cur1,"IdNeed");     
+      cur1->hook=SEARCH_CND("IdGood",v[10]);
+
+     }
+   v[12]=VS(cur1->hook,"BLrecouped");
+   v[2]+=v[12]*v[11];
+     
+   }
+  WRITES(cur,"Recouped",v[2]);
+ }
 RESULT(1 )
 
 
@@ -729,7 +757,8 @@ CYCLE(cur, "blItem")
   v[5]+=MULTS(cur,"blQ",v[4]);
 
  }
-INCRS(p->up->up,"BLrecouped",v[55]); 
+
+INCRS(p->hook->up,"BLrecouped",v[55]); 
 
 v[2]=v[5];
 v[24]=v[23]=v[77]=0;
@@ -1301,7 +1330,7 @@ Available liquidity
 v[0]=VL("Liquidity",1);
 v[1]=V("OutgoingLiquidity");
 v[2]=V("TotalSavings");
-v[3]=V("BLrecouped");
+
 RESULT(v[0]+v[2]+v[3]-v[1])
 
 EQUATION("CapitalUsed")
@@ -1418,9 +1447,11 @@ Comment
 */
 v[1]=V("Income");
 v[2]=V("Expenditure");
+v[4]=V("Recouped");
 
-v[3]=v[1]-v[2];
+v[3]=v[1]+v[4]-v[2];
 
+WRITE("shareRecouped",v[4]/v[3]);
 RESULT(v[3] )
 
 
