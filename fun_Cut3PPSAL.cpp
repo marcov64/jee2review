@@ -850,6 +850,8 @@ if(v[77]==1)
  }
 RESULT(v[2] )
 
+
+
 EQUATION("markup")
 /*
 
@@ -867,7 +869,8 @@ else
 */
 
 v[0]=V("Stocks"); //here it is computed the backlog
-v[1]=V("UnitDemand");
+//v[1]=V("UnitDemand");
+v[1]=V("ExpectedSales");
 v[2]=V("Q");
 v[4]=V("coefMarkupVar");
 v[5]=V("backlog");
@@ -4256,6 +4259,7 @@ CYCLE(cur, "Sectors")
   WRITES(cur,"SnumBLI",0);      
   WRITES(cur,"SNetWorth",0);      
   WRITES(cur,"SAvAge",0); 
+  WRITES(cur,"SBacklogShare",0);
 
  }
 
@@ -4263,6 +4267,7 @@ CYCLE(cur, "Supply")
  {
   CYCLES(cur, cur1, "Firm")
    {
+    INCRS(cur1->hook->up, "SBacklogShare", VS(cur1,"backlog"));
     INCRS(cur1->hook->up, "SAvAge", VS(cur1,"Age"));
     INCRS(cur1->hook->up, "SUnitSales", VS(cur1,"UnitSales"));
     INCRS(cur1->hook->up, "SnumBLI", VS(cur1,"numBLI"));
@@ -4339,7 +4344,9 @@ CYCLE(cur1, "Sectors")
     MULTS(cur1,"AvxS",1/v[30]);
     MULTS(cur1,"SKProductivity",1/v[30]); 
     MULTS(cur1,"SULC",1/v[30]);        
-    MULTS(cur1,"AvpS",1/v[30]);        
+    MULTS(cur1,"AvpS",1/v[30]); 
+    MULTS(cur1,"SBacklogShare",1/v[30]);     
+           
    }
   else
    {
