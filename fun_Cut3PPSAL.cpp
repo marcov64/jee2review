@@ -269,7 +269,7 @@ Comment
 //END_EQUATION(1);
 v[0]=V("backlog");
 v[1]=CURRENT;
-v[2]=V("MonetarySales");
+v[2]=V("ExpectedSales");
 if(v[2]<1)
  v[2]=1;
 
@@ -448,6 +448,9 @@ CYCLE(cur, "Sectors")
  WRITES(cur,"BLrecouped",0);
 CYCLE(cur, "Supply")
  {
+  CYCLES(cur, cur1, "Firm")
+   v[0]+=VS(cur1,"KapitalNeed");
+     
   CYCLES(cur, cur1, "Firm")
    {
     VS(cur1,"Profit");
@@ -2179,64 +2182,6 @@ WRITE("RationingRatioFirm",v[21]);
 
 RESULT(v[12] )
 
-EQUATION("KapitalNeedXXX")
-/*
-Decide whether to order new capital.
-*/
-
-
-v[0]=V("Waiting");
-if(v[0]==1)
- END_EQUATION(CURRENT);
- 
-V("MaxLaborProductivity");
-v[3]=V("CapitalCapacity");
-v[4]=V("ExpectedSales");
-v[5]=V("backlog")/10;//a tenth of backlog should be got rid of.
-v[7]=V("DesiredUnusedCapacity");
-v[8]=V("CapitalIntens");
-v[9]=(v[4]+v[5])*v[7];
-
-v[10]=v[9]-v[3];
-v[11]=max(v[10],0);
-if(v[11]==0)
- END_EQUATION(0);
- 
-v[12]=v[11]*v[8];//desired capital
-
-v[14]=VL("SmoothProfit",1);
-v[16]=V("AvKPrice");
-v[17]=V("InterestRate");
-v[24]=V("BacklogValue");
-
-v[18]=max(0,v[14]) ;//financial constraints
-
-
-v[20]=VL("BalanceF",1)-V("DebtF");//liquid capital available to invest
-v[21]=V("DivisorLiquidityFinance");
-if(v[20]/v[21]>=v[12]*v[16])
- {//plog(" self financed\n");
-  WRITE("RationingRatioFirm",1); 
-  END_EQUATION(v[12]);
- }
-
-
-if((v[12]*v[16])*v[17]>v[18])
- {
-  v[19]=(v[18])/( (v[12]*v[16]) *v[17]);//ratio rationing
-  //sprintf(msg, " %g\n", v[19]);
-  //plog(msg);
-  
-  v[12]*=v[19];
-  WRITE("RationingRatioFirm",v[19]);
- }
-else
- {
-  WRITE("RationingRatioFirm",1); 
- } 
-
-
-RESULT(v[12] )
 
 
 EQUATION("InvestmentDecision")
@@ -2250,12 +2195,15 @@ if(v[0]==1)
 //we are here only if there is no pending order
 
 v[1]=V("KapitalNeed");
-v[2]=VL("NetWorth",1);
+v[2]=V("AvKPrice");
 
-//if(v[1]>0 && v[2]>0)
-if(v[1]>0)
+v[3]=VL("TotalValue",1);
+v[4]=VL("Liquidity",1);
+
+
+if(v[1]>0 && RND<v[4]/v[3] )
  {
-  v[3]=V("PlaceOrder");
+  V("PlaceOrder");
   WRITE("Waiting",1);
  } 
 
