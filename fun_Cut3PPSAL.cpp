@@ -269,6 +269,7 @@ Comment
 //END_EQUATION(1);
 v[0]=V("backlog");
 v[1]=CURRENT;
+//v[2]=V("MonetarySales");
 v[2]=V("ExpectedSales");
 if(v[2]<1)
  v[2]=1;
@@ -448,9 +449,6 @@ CYCLE(cur, "Sectors")
  WRITES(cur,"BLrecouped",0);
 CYCLE(cur, "Supply")
  {
-  CYCLES(cur, cur1, "Firm")
-   v[0]+=VS(cur1,"KapitalNeed");
-     
   CYCLES(cur, cur1, "Firm")
    {
     VS(cur1,"Profit");
@@ -756,7 +754,7 @@ v[4]=V("BLfriction");
 v[5]=v[55]=0;
 CYCLE(cur, "blItem")
  {
-  v[55]+=V("blQ")*(1-v[4]);
+  v[55]+=VS(cur,"blQ")*VS(cur,"blPrice")*(1-v[4]);
   v[5]+=MULTS(cur,"blQ",v[4]);
 
  }
@@ -1457,7 +1455,9 @@ v[4]=V("Recouped");
 
 v[3]=v[1]+v[4]-v[2];
 
-WRITE("shareRecouped",v[4]/v[3]);
+WRITE("shareRecouped",v[5]=v[4]/(v[4]+v[1]));
+if(v[5] > 1 || v[5] <0 )
+ INTERACT("SHARE recouped out of range",v[5]);
 RESULT(v[3] )
 
 
@@ -1938,6 +1938,7 @@ v[0]=V("Profit");
 
 v[2]=V("roPremia");
 v[5]=max(0,(v[0])*v[2]);
+v[3]=0;
 
 if(v[5]>0)
  {
@@ -2002,40 +2003,6 @@ v[10]=V("LaborCostK");
 v[5]=v[0]-v[10]-v[1]; //total liquidity after labor costs and premia
  
 RESULT(v[5] )
-
-EQUATION("WagePremK") 
-/* 
-Wage premia distributed, when available to all classes of executives. 
-*/ 
-
-v[0]=V("BalanceK"); 
-v[2]=V("roPremiaK"); 
-v[5]=max(0,v[0]*v[2]); 
-
-if(v[5]>0) 
- { 
-  CYCLE(cur, "KLabor") 
-   { 
-    v[10]=VS(cur,"IdKLabor"); 
-    if(v[10]>1) 
-     { 
-      v[2]=VS(cur,"KWage"); 
-      v[3]+=v[2]; 
-     } 
-   } 
-    
-  CYCLE(cur, "KLabor") 
-   { 
-    v[10]=VS(cur,"IdKLabor"); 
-    if(v[10]>1) 
-     {v[2]=VS(cur,"KWwage"); 
-      WRITES(cur,"KPremia",v[5]*v[2]/v[3]); 
-      INCRS(cur->hook,"PremiaIncome",v[5]*v[2]/v[3]); 
-     } 
-   } 
- } 
-
-RESULT(v[5] ) 
 
 EQUATION("KLaborCost") 
 /* 
@@ -2183,7 +2150,6 @@ WRITE("RationingRatioFirm",v[21]);
 RESULT(v[12] )
 
 
-
 EQUATION("InvestmentDecision")
 /*
 Place on order of K if you need it and did not place an order as yet
@@ -2208,7 +2174,6 @@ if(v[1]>0 && RND<v[4]/v[3] )
  } 
 
 RESULT( 1)
-
 
 EQUATION("SmoothProfit")
 /*
@@ -2617,6 +2582,7 @@ v[0]=V("KProfit");
 v[2]=V("roPremia");
 v[5]=max(0,v[0]*v[2]);
 
+v[3]=0;
 if(v[5]>0)
  {
   CYCLE(cur, "KLabor")
