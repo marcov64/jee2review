@@ -1740,6 +1740,8 @@ Markup on the unit production cost
 */
 v[10]=V("markup");
 v[22]=V("UnitLaborCost"); // labour in the first tier (the ones which define the production capacity)
+v[1]=V("PTrend");
+v[2]=VL("price",1);
 
 v[14]=v[10]*v[22];
 
@@ -1896,7 +1898,36 @@ WRITE("CapitalStock",v[1]);
 WRITE("CapitalCapacity",v[50]);
 RESULT(v[8] )
 
+EQUATION("AvMaxLProd")
+/*
+Average Max theoretical labour productivity across firms, to be used to index min wages, as this productuvity is what can be shared between capital and labour
+*/
 
+v[3]=0;
+CYCLE(cur1, "Supply")
+ {
+  CYCLES(cur1, cur, "Firm")
+   {
+    v[1]=VS(cur,"MaxLaborProductivity");
+    v[2]=VS(cur,"Ms");
+    v[3]+=v[1]*v[2];
+   }
+ }
+
+RESULT(v[3] )
+
+EQUATION("MovAvMaxLProd")
+/*
+Exponential Moving Average of the aggregate productivity
+*/
+
+v[1]=VL("MovAvMaxLProd",1);
+//v[2]=VL("AggProductivity",1);
+v[2]=VL("AvMaxLProd",0);
+v[3]=V("aAgProd");
+v[4]=v[3]*v[2]+(1-v[3])*v[1];
+
+RESULT(v[4] )
 
 EQUATION("KAge")
 v[0]=VL("KAge",1);
@@ -2637,7 +2668,7 @@ if(v[14]==1)
   v[2]=VL("KLaborProductivity",1);
   v[4]=V("KDesiredUnusedCapacity");
   v[3]=v[4]*(v[1]/v[2]);
-  v[5]=V("KaNW");
+  v[5]=V("aNW");
   v[6]=v[0]*v[5]+(1-v[5])*v[3];
   v[33]=v[3]>v[6]?v[3]-v[6]:0;
   v[54]=v[33]/v[6];
@@ -2763,44 +2794,92 @@ NOTE: probably it makes sense to use levels for all variables. That is, when the
 
 */
 V("NbrWorkers");
-v[6]=(double)t;
 v[0]=VL("MinWage",1);
 //END_EQUATION(v[0]);
 v[10]=V("InitAggProd"); //the reference level of productivity 
-v[2]=V("MovAvAggProd");
+v[2]=V("MovAvMaxLProd");
+v[43]=VL("MovAvMaxLProd",1);
 v[11]=V("IncrAggProd"); 
 v[12]=v[10]+v[10]*v[11]; //required increase in productity to change the min wage
 v[13]=V("MovAvPrice");
+v[44]=VL("MovAvPrice",1);
 v[14]=V("InitAvPrice"); //the reference level of prices
 v[15]=V("IncrAvPrice");
 v[16]=v[14]+v[14]*v[15]; //required increase in prices to change the min wage
 v[17]=VL("LTUnemployment",1);
 v[18]=VL("STUnemployment",1);
+v[19]=V("STUnemployment");
+//v[18]=VL("UnemploymentRate",1);
+//v[19]=V("UnemploymentRate");
 
 v[30]=V("minMinWage");
 v[31]=V("maxMinWage");
 v[32]=V("elasMinWage");
+v[33]=V("elasMWProd");
+v[34]=V("elasMWPrice");
+
+v[35]=v[19]/v[18]-1;
+v[36]=v[2]/v[10]-1;//Change in productivity
+v[37]=v[13]/v[14]-1; // Change in prices
+//v[36]=v[2]/v[43]-1; //Change in productivity
+//v[37]=v[13]/v[44]-1; //change in price
+//v[47]=v[45]/v[46]-1; //change in theoretical productivity
 
 v[5]=v[30]+v[31]*pow(v[18],-v[32]);
-v[6]=0.95*v[0]+0.05*v[5];
+//v[6]=0.95*v[0]+0.05*v[5];
+
+if(v[35]>0)
+ v[38]=(-v[32]+0.05)*v[35];
+else
+ v[38]=(-v[32]-0.05)*v[35];
+v[39]=0;
+v[40]=0;
+
 
 if(v[2]>v[12])
  {
  
   v[30]=(v[12]/v[10])*v[30];
-  v[31]=(v[12]/v[10])*v[31];  
+  v[31]=(v[12]/v[10])*v[31];
+  v[39]=(v[33])*v[36];
   WRITE("InitAggProd",v[2]);
  // WRITE("IncrAggProd",v[11]*v[2]/v[10]);  
  }
+
 
 if(v[13]>v[16])
  {
  
   v[30]=(v[16]/v[14])*v[30];
-  v[31]=(v[16]/v[14])*v[31];  
+  v[31]=(v[16]/v[14])*v[31];
+  v[40]=(v[34])*v[37];
   WRITE("InitAvPrice",v[13]);
  // WRITE("IncrAvPrice",v[15]*v[13]/v[14]);  
  }
+ 
+if(v[2]>v[12] & v[13]>v[16])
+ {
+  v[39]=(v[33])*v[36]*0.5;
+  v[40]=(v[34])*v[37]*0.5;
+ }
+
+/*
+if(v[47]>0)
+ v[39]=(v[33])*v[47];
+if(v[37]>0)
+ v[40]=(v[34])*v[37];
+*/
+
+v[48]=V("InitMinWage");
+v[41]=-v[32]*log(v[19]/100);
+v[42]=-v[32]*log(v[18]/100);
+v[6]=v[0]+exp(v[41])-exp(v[42])+v[39]*v[48]+v[40]*v[48];
+
+//v[6]=v[0]+v[39]*v[0]+v[40]*v[0];
+
+if(v[2]>v[12] | v[13]>v[16])
+ WRITE("InitMinWage",v[6]);
+
 
 WRITE("minMinWage",v[30]);
 WRITE("maxMinWage",v[31]);
@@ -2931,6 +3010,54 @@ CYCLE(cur1, "Supply")
 
 RESULT(v[3] )
 
+
+EQUATION("CPI")
+/*
+Consumer Price Index
+*/
+
+v[1]=(double)t;
+v[2]=V("MovAvPrice");
+if(v[1]==10 | v[1]==1000 |v[1]==2000 | v[1]==3000 | v[1]==4000)
+ WRITE("BaseP",v[2]);
+v[3]=V("BaseP");
+v[4]=v[2]/v[3]*100;
+
+RESULT(v[4] )
+
+EQUATION("MinWageIndex")
+/*
+Minimum Wage index
+*/
+
+v[1]=(double)t;
+v[2]=V("MinWage");
+if(v[1]==10 | v[1]==1000 |v[1]==2000 | v[1]==3000 | v[1]==4000)
+ WRITE("BaseMinWage",v[2]);
+v[3]=V("BaseMinWage");
+v[4]=v[2]/v[3]*100;
+
+
+RESULT(v[4] )
+
+EQUATION("ProdIndex")
+/*
+Aggregate productivity Index (average theoretical productivity given firms capital goods)
+*/
+
+v[1]=(double)t;
+v[2]=V("MovAvMaxLProd");
+if(v[1]==10 | v[1]==1000 |v[1]==2000 | v[1]==3000 | v[1]==4000)
+ WRITE("BaseProd",v[2]);
+v[3]=V("BaseProd");
+v[4]=v[2]/v[3]*100;
+
+RESULT(v[4] )
+
+
+
+
+
 EQUATION("Age")
 /*
 Age of the firm
@@ -2985,7 +3112,7 @@ CYCLE(cur,"KFirm")
   v[0]+=VS(cur,"KVacancies");  
  }
 
-WRITE("AvRatioVacancies",v[0]/v[1]);
+WRITE("AvRatioVacancies",v[0]/(v[1]+v[0])*100);
 RESULT(v[0] )
 
 
@@ -3018,6 +3145,9 @@ v[2]=V("AvRatioVacancies");
 v[3]=V("beta");
 //v[4]=v[1]-v[3]*v[2];
 v[4]=v[1]+pow(v[3],3*v[2]+0.5);
+
+//Hyperbolic
+v[4]=(v[1]+v[3]/(v[2]+0.2));
 
 RESULT(v[4] )
 
