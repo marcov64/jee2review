@@ -505,7 +505,7 @@ Label Root
 			Param: TotalKProduction
 			Param: AvCurrentProductivity
 			Var: ClearExitRecord
-			Param: ShareInit
+			Func: ShareInit
 			Param: MinimumCMaxW
 			Param: MinimumCMinW
 			Param: MinimumCMaxE
@@ -514,7 +514,7 @@ Label Root
 			Param: MinimumPMinW
 			Param: MinimumPMaxE
 			Param: MinimumPMinE
-			Param: MinimumInit
+			Func: MinimumInit
 			Param: AvRatioVacancies
 			Param: tauMinW
 			Param: tauMaxW
@@ -644,7 +644,7 @@ Param: GdpConstantK 0 n + n n	99832.7
 Param: TotalKProduction 0 s + n n	99832.7
 Param: AvCurrentProductivity 0 s + n n	1.99323
 Var: ClearExitRecord 0 n + n n
-Param: ShareInit 0 n + n n	1
+Func: ShareInit 0 n + d n
 Param: MinimumCMaxW 0 n + n n	10
 Param: MinimumCMinW 0 n + n n	0
 Param: MinimumCMaxE 0 n + n n	10
@@ -653,7 +653,7 @@ Param: MinimumPMaxW 0 n + n n	1000
 Param: MinimumPMinW 0 n + n n	100
 Param: MinimumPMaxE 0 n + n n	500
 Param: MinimumPMinE 0 n + n n	100
-Param: MinimumInit 0 n + n n	1
+Func: MinimumInit 0 n + n n
 Param: AvRatioVacancies 0 s + n n	4.63739
 Param: tauMinW 0 n + n n	1
 Param: tauMaxW 0 n + n n	1
@@ -1451,8 +1451,9 @@ _INIT_
 
 END_DESCRIPTION
 
-Variable_ShareInit
+Function_ShareInit
 Initialise the expenditure shares of the needs for the classes above the first one
+
 _INIT_
 
 END_DESCRIPTION
@@ -1505,7 +1506,7 @@ _INIT_
  All 1 instances equal to 0.
 END_DESCRIPTION
 
-Variable_MinimumInit
+Function_MinimumInit
 Initialisation of the minimum parameter across classes, needs and chars
 _INIT_
 

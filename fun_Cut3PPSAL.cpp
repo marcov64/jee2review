@@ -4807,6 +4807,10 @@ CYCLE(cur, "KFirm")
   
  }
 
+
+V("TauInit");
+V("ShareInit");
+
 RESULT( 1)
 
 
